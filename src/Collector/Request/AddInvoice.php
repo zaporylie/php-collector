@@ -253,11 +253,6 @@ class AddInvoice extends InvoiceService implements ServiceInterface {
     return $this->OrderDate->format('Y-m-d\TH:i:sP');
   }
 
-  public function parseResults($results) {
-    var_dump($results);
-    return $results;
-  }
-
   public function getMethod() {
     return self::METHOD;
   }
