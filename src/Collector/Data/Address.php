@@ -58,8 +58,21 @@ class Address extends BaseAddress
      * @param null $cellPhoneNumber
      * @param null $email
      */
-    public function __construct($firstname, $lastname, $address1, $postalCode, $city, $countryCode, $companyName = null, $address2 = null, $cOAddress = null, $phoneNumber = null, $cellPhoneNumber = null, $email = null)
-    {
+    public function __construct(
+        $firstname,
+        $lastname,
+        $address1,
+        $postalCode,
+        $city,
+        $countryCode,
+        $companyName = null,
+        $address2 = null,
+        $cOAddress = null,
+        $phoneNumber = null,
+        $cellPhoneNumber = null,
+        $email = null
+    ) {
+    
         $this->Firstname = $firstname;
         $this->Lastname = $lastname;
         $this->Address1 = $address1;

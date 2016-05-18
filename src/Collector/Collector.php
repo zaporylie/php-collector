@@ -1,5 +1,7 @@
 <?php
 
+namespace Collector;
+
 /**
  * Class Collector.
  */

@@ -6,8 +6,17 @@
             "email": "jakub@piaseccy.pl"
         }
     ],
+    "scripts": {
+        "test": "phpunit ./test/unit/",
+        "test-style": "phpcs --standard=PSR2 -p src",
+        "fix-style": "phpcbf --standard=PSR2 -p src"
+    },
     "require": {
         "php": "^5.4 || ^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.3.*",
+        "squizlabs/php_codesniffer": "2.*"
     },
     "autoload": {
         "psr-4": {
