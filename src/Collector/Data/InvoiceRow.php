@@ -1,30 +1,16 @@
 <?php
 
 namespace Collector\Data;
+
 use Collector\Serializer;
 
 /**
  * Class InvoiceRow
  * @package Collector\Data
  */
-class InvoiceRow implements \JsonSerializable {
+class InvoiceRow extends ArticleList {
 
   use Serializer;
-
-  /**
-   * @var string
-   */
-  protected $ArticleId;
-
-  /**
-   * @var string
-   */
-  protected $Description;
-
-  /**
-   * @var int
-   */
-  protected $Quantity;
 
   /**
    * @var float
@@ -46,12 +32,9 @@ class InvoiceRow implements \JsonSerializable {
    * @param float $vat
    */
   public function __construct($articleId, $description, $quantity, $unitPrice, $vat) {
-    $this->ArticleId = $articleId;
-    $this->Description = $description;
-    $this->Quantity = $quantity;
+    parent::__construct($articleId, $description, $quantity);
     $this->UnitPrice = $unitPrice;
     $this->VAT = $vat;
   }
-
 
 }
