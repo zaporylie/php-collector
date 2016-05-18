@@ -7,9 +7,9 @@ trait HeaderTrait {
   use CorrelationIdTrait;
 
   /**
-   * @var int
+   * @var int (optional)
    */
-  protected $storeId;
+  protected $StoreId;
 
   /**
    * @var string
@@ -20,14 +20,14 @@ trait HeaderTrait {
    * @return int
    */
   public function getStoreId() {
-    return $this->storeId;
+    return $this->StoreId;
   }
 
   /**
-   * @param int $storeId
+   * @param int $StoreId
    */
-  public function setStoreId($storeId) {
-    $this->storeId = $storeId;
+  public function setStoreId($StoreId) {
+    $this->StoreId = $StoreId;
   }
 
   /**

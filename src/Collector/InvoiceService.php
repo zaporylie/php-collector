@@ -2,26 +2,26 @@
 
 namespace Collector;
 
-class InvoiceService {
+abstract class InvoiceService implements \JsonSerializable {
 
-  const wsdl = 'InvoiceServiceV32.svc';
+  const WSDL = 'InvoiceServiceV32.svc';
 
-  const schema = 'InvoiceService';
+  const SCHEMA = 'InvoiceService';
 
-  var $data;
+  use Serializer;
 
   /**
    * {@inheritdoc}
    */
   public function getWsdl() {
-    return self::wsdl;
+    return self::WSDL;
   }
 
   /**
    * {@inheritdoc}
    */
   public function getSchema() {
-    return self::schema;
+    return self::SCHEMA;
   }
 
   /**
@@ -34,8 +34,8 @@ class InvoiceService {
   /**
    * @return mixed
    */
-  public function getData() {
-    return $this->data;
+  function getData() {
+    return json_decode(json_encode($this), TRUE);
   }
 
 }

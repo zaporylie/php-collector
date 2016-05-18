@@ -6,7 +6,9 @@
             "email": "jakub@piaseccy.pl"
         }
     ],
-    "require": {},
+    "require": {
+        "php": "^5.4 || ^7.0"
+    },
     "autoload": {
         "psr-4": {
             "Collector\\": "src/Collector/",

@@ -8,13 +8,13 @@ namespace Collector;
  */
 class Client {
 
-  const productionEnvironment = 'https://ecommerce.collector.se/v3.0/InvoiceServiceV32.svc';
+  const PRODUCTION = 'https://ecommerce.collector.se/v3.0/';
 
-  const testEnvironment = 'https://eCommerceTest.collector.se/v3.0/InvoiceServiceV32.svc';
+  const TEST = 'https://eCommerceTest.collector.se/v3.0/';
 
-  const wsdlSuffix = '?singleWsdl';
+  const WSDL_SUFFIX = '?singleWsdl';
 
-  const schemaPrefix = 'http://schemas.ecommerce.collector.se/v30/';
+  const SCHEMA_PREFIX = 'http://schemas.ecommerce.collector.se/v30/';
 
   /**
    * @var array
@@ -56,7 +56,7 @@ class Client {
    * @param string $password
    * @param string $environment
    */
-  public function __construct($username, $password, $environment = self::testEnvironment) {
+  public function __construct($username, $password, $environment = self::TEST) {
     $this->username = $username;
     $this->password = $password;
     $this->ip = $_SERVER['SERVER_ADDR'];
@@ -75,12 +75,12 @@ class Client {
    * @throws \Collector\ClientException
    */
   public function call() {
-    $path = $this->environment . $this->service->getWsdl() . self::wsdlSuffix;
+    $path = $this->environment . $this->service->getWsdl() . self::WSDL_SUFFIX;
     $client = new \SoapClient($path, $this->options);
 
     $headers = array();
 
-    $namespace = self::schemaPrefix . $this->service->getSchema();
+    $namespace = self::SCHEMA_PREFIX . $this->service->getSchema();
 
     $headers[] = new \SoapHeader($namespace, 'ClientIpAddress', $this->ip);
     $headers[] = new \SoapHeader($namespace, 'Username', $this->username);
@@ -88,13 +88,11 @@ class Client {
     $client->__setSoapHeaders($headers);
 
     try {
+      var_dump($this->service->getData());
       $results = $client->{$this->service->getMethod()}($this->service->getData());
     }
-    catch (\SoapFault $e) {
-      throw new ClientException($e->getMessage(), $e->getCode(), $e);
-    }
     catch(\Exception $e) {
-      throw new ClientException($e->getMessage(), $e->getCode());
+      throw new ClientException($e->getMessage(), $e->getCode(), $e);
     }
 
     return $this->service->parseResults($results);

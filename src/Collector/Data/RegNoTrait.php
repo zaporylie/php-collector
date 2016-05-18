@@ -7,20 +7,20 @@ trait RegNoTrait {
   /**
    * @var string
    */
-  protected $regNo;
+  protected $RegNo;
 
   /**
-   * @param string $regNo
+   * @param string $RegNo
    */
-  public function setRegNo($regNo) {
-    $this->regNo = $regNo;
+  public function setRegNo($RegNo) {
+    $this->RegNo = $RegNo;
   }
 
   /**
    * @return string
    */
   public function getRegNo() {
-    return $this->regNo;
+    return $this->RegNo;
   }
-  
+
 }
