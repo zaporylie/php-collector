@@ -2,32 +2,35 @@
 
 namespace Collector;
 
-interface ServiceInterface {
+/**
+ * Interface ServiceInterface.
+ */
+interface ServiceInterface
+{
+    /**
+     * @return string
+     */
+    public function getWsdl();
 
-  /**
-   * @return string
-   */
-  function getWsdl();
+    /**
+     * @return string
+     */
+    public function getSchema();
 
-  /**
-   * @return string
-   */
-  function getSchema();
+    /**
+     * @return string
+     */
+    public function getMethod();
 
-  /**
-   * @return string
-   */
-  function getMethod();
+    /**
+     * @return mixed
+     */
+    public function getData();
 
-  /**
-   * @return mixed
-   */
-  function getData();
-
-  /**
-   * @param $results
-   * @return mixed
-   */
-  function parseResults($results);
-
+    /**
+     * @param $results
+     *
+     * @return mixed
+     */
+    public function parseResults($results);
 }

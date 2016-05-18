@@ -1,12 +1,11 @@
 <?php
 
 /**
- * Class Collector
+ * Class Collector.
  */
-class Collector {
+class Collector
+{
+    const PRODUCTION_URL_PANEL = 'https://commerce.collector.se/portal';
 
-  const panelUrlProduction = 'https://commerce.collector.se/portal';
-
-  const panelUrlTest = 'https://commerce.collector.se/testportal';
-
+    const TEST_URL_PANEL = 'https://commerce.collector.se/testportal';
 }

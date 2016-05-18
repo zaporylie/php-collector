@@ -7,15 +7,18 @@ use Collector\Data\InvoiceTrait;
 use Collector\InvoiceService;
 use Collector\ServiceInterface;
 
-class CancelInvoice extends InvoiceService implements ServiceInterface {
+/**
+ * Class CancelInvoice.
+ */
+class CancelInvoice extends InvoiceService implements ServiceInterface
+{
+    use HeaderTrait;
+    use InvoiceTrait;
 
-  use HeaderTrait;
-  use InvoiceTrait;
+    const METHOD = 'CancelInvoice';
 
-  const METHOD = 'CancelInvoice';
-
-  public function getMethod() {
-    return self::METHOD;
-  }
-
+    public function getMethod()
+    {
+        return self::METHOD;
+    }
 }

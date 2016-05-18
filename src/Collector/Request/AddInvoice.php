@@ -7,253 +7,277 @@ use Collector\ServiceInterface;
 use Collector\Data\HeaderTrait;
 use Collector\Data\RegNoTrait;
 
-class AddInvoice extends InvoiceService implements ServiceInterface {
+/**
+ * Class AddInvoice.
+ */
+class AddInvoice extends InvoiceService implements ServiceInterface
+{
+    const METHOD = 'AddInvoice';
 
-  const METHOD = 'AddInvoice';
+    use RegNoTrait;
+    use HeaderTrait;
 
-  use RegNoTrait;
-  use HeaderTrait;
+    /**
+     * @var string (optional)
+     */
+    protected $ClientIpAddress;
 
-  /**
-   * @var string (optional)
-   */
-  protected $ClientIpAddress;
+    /**
+     * @var string
+     */
+    protected $Currency;
 
-  /**
-   * @var string
-   */
-  protected $Currency;
+    /**
+     * @var string (optional)
+     */
+    protected $CustomerNo;
 
-  /**
-   * @var string (optional)
-   */
-  protected $CustomerNo;
+    /**
+     * @var string (optional)
+     */
+    protected $OrderNo;
 
-  /**
-   * @var string (optional)
-   */
-  protected $OrderNo;
+    /**
+     * @var \DateTime
+     */
+    protected $OrderDate;
 
-  /**
-   * @var \DateTime
-   */
-  protected $OrderDate;
+    /**
+     * @var \Collector\Data\InvoiceRow[]
+     */
+    protected $InvoiceRows;
 
-  /**
-   * @var \Collector\Data\InvoiceRow[]
-   */
-  protected $InvoiceRows;
+    /**
+     * @var int (optional)
+     */
+    protected $InvoiceType;
 
-  /**
-   * @var int (optional)
-   */
-  protected $InvoiceType;
+    /**
+     * @var \Collector\Data\Address
+     */
+    protected $InvoiceAddress;
 
-  /**
-   * @var \Collector\Data\Address
-   */
-  protected $InvoiceAddress;
+    /**
+     * @var \Collector\Data\Address
+     */
+    protected $DeliveryAddress;
 
-  /**
-   * @var \Collector\Data\Address
-   */
-  protected $DeliveryAddress;
+    /**
+     * @var int (optional)
+     *
+     * Not used at the moment.
+     */
+    protected $CreditTime;
 
-  /**
-   * @var int (optional)
-   *
-   * Not used at the moment.
-   */
-  protected $CreditTime;
+    /**
+     * @var int (optional)
+     */
+    protected $ActivationOption;
 
-  /**
-   * @var int (optional)
-   */
-  protected $ActivationOption;
+    /**
+     * @var string (optional)
+     */
+    protected $Reference;
 
-  /**
-   * @var string (optional)
-   */
-  protected $Reference;
+    /**
+     * @var string (optional)
+     */
+    protected $CostCenter;
 
-  /**
-   * @var string (optional)
-   */
-  protected $CostCenter;
+    /**
+     * @var int (optional)
+     */
+    protected $Gender;
 
-  /**
-   * @var int (optional)
-   */
-  protected $Gender;
+    /**
+     * @var int
+     */
+    protected $InvoiceDeliveryMethod;
 
-  /**
-   * @var int
-   */
-  protected $InvoiceDeliveryMethod;
+    /**
+     * @var string (optional)
+     */
+    protected $ProductCode;
 
-  /**
-   * @var string (optional)
-   */
-  protected $ProductCode;
+    /**
+     * @var int (optional)
+     */
+    protected $PurchaseType;
 
-  /**
-   * @var int (optional)
-   */
-  protected $PurchaseType;
+    /**
+     * @var string (optional)
+     */
+    protected $SalesPerson;
 
-  /**
-   * @var string (optional)
-   */
-  protected $SalesPerson;
+    /**
+     * @var (optional)
+     *
+     * Contact Collector for further information how to use it.
+     */
+    protected $AdditionalInformation;
 
-  /**
-   * @var (optional)
-   *
-   * Contact Collector for further information how to use it.
-   */
-  protected $AdditionalInformation;
+    /**
+     * @param string $ClientIpAddress
+     */
+    public function setClientIpAddress($ClientIpAddress)
+    {
+        $this->ClientIpAddress = $ClientIpAddress;
+    }
 
-  /**
-   * @param string $ClientIpAddress
-   */
-  public function setClientIpAddress($ClientIpAddress) {
-    $this->ClientIpAddress = $ClientIpAddress;
-  }
+    /**
+     * @param string $Currency
+     */
+    public function setCurrency($Currency)
+    {
+        $this->Currency = $Currency;
+    }
 
-  /**
-   * @param string $Currency
-   */
-  public function setCurrency($Currency) {
-    $this->Currency = $Currency;
-  }
+    /**
+     * @param string $CustomerNo
+     */
+    public function setCustomerNo($CustomerNo)
+    {
+        $this->CustomerNo = $CustomerNo;
+    }
 
-  /**
-   * @param string $CustomerNo
-   */
-  public function setCustomerNo($CustomerNo) {
-    $this->CustomerNo = $CustomerNo;
-  }
+    /**
+     * @param string $OrderNo
+     */
+    public function setOrderNo($OrderNo)
+    {
+        $this->OrderNo = $OrderNo;
+    }
 
-  /**
-   * @param string $OrderNo
-   */
-  public function setOrderNo($OrderNo) {
-    $this->OrderNo = $OrderNo;
-  }
+    /**
+     * @param \DateTime $OrderDate
+     */
+    public function setOrderDate($OrderDate)
+    {
+        $this->OrderDate = $OrderDate;
+    }
 
-  /**
-   * @param \DateTime $OrderDate
-   */
-  public function setOrderDate($OrderDate) {
-    $this->OrderDate = $OrderDate;
-  }
+    /**
+     * @param \Collector\Data\InvoiceRow[] $InvoiceRows
+     */
+    public function setInvoiceRows(array $InvoiceRows)
+    {
+        $this->InvoiceRows = $InvoiceRows;
+    }
 
-  /**
-   * @param \Collector\Data\InvoiceRow[] $InvoiceRows
-   */
-  public function setInvoiceRows(array $InvoiceRows) {
-    $this->InvoiceRows = $InvoiceRows;
-  }
+    /**
+     * @param int $InvoiceType
+     */
+    public function setInvoiceType($InvoiceType)
+    {
+        $this->InvoiceType = $InvoiceType;
+    }
 
-  /**
-   * @param int $InvoiceType
-   */
-  public function setInvoiceType($InvoiceType) {
-    $this->InvoiceType = $InvoiceType;
-  }
+    /**
+     * @param \Collector\Data\Address $InvoiceAddress
+     */
+    public function setInvoiceAddress(\Collector\Data\Address $InvoiceAddress)
+    {
+        $this->InvoiceAddress = $InvoiceAddress;
+    }
 
-  /**
-   * @param \Collector\Data\Address $InvoiceAddress
-   */
-  public function setInvoiceAddress(\Collector\Data\Address $InvoiceAddress) {
-    $this->InvoiceAddress = $InvoiceAddress;
-  }
+    /**
+     * @param \Collector\Data\Address $DeliveryAddress
+     */
+    public function setDeliveryAddress(\Collector\Data\Address $DeliveryAddress)
+    {
+        $this->DeliveryAddress = $DeliveryAddress;
+    }
 
-  /**
-   * @param \Collector\Data\Address $DeliveryAddress
-   */
-  public function setDeliveryAddress(\Collector\Data\Address $DeliveryAddress) {
-    $this->DeliveryAddress = $DeliveryAddress;
-  }
+    /**
+     * @param int $CreditTime
+     */
+    public function setCreditTime($CreditTime)
+    {
+        $this->CreditTime = $CreditTime;
+    }
 
-  /**
-   * @param int $CreditTime
-   */
-  public function setCreditTime($CreditTime) {
-    $this->CreditTime = $CreditTime;
-  }
+    /**
+     * @param int $ActivationOption
+     */
+    public function setActivationOption($ActivationOption)
+    {
+        $this->ActivationOption = $ActivationOption;
+    }
 
-  /**
-   * @param int $ActivationOption
-   */
-  public function setActivationOption($ActivationOption) {
-    $this->ActivationOption = $ActivationOption;
-  }
+    /**
+     * @param string $Reference
+     */
+    public function setReference($Reference)
+    {
+        $this->Reference = $Reference;
+    }
 
-  /**
-   * @param string $Reference
-   */
-  public function setReference($Reference) {
-    $this->Reference = $Reference;
-  }
+    /**
+     * @param string $CostCenter
+     */
+    public function setCostCenter($CostCenter)
+    {
+        $this->CostCenter = $CostCenter;
+    }
 
-  /**
-   * @param string $CostCenter
-   */
-  public function setCostCenter($CostCenter) {
-    $this->CostCenter = $CostCenter;
-  }
+    /**
+     * @param int $Gender
+     */
+    public function setGender($Gender)
+    {
+        $this->Gender = $Gender;
+    }
 
-  /**
-   * @param int $Gender
-   */
-  public function setGender($Gender) {
-    $this->Gender = $Gender;
-  }
+    /**
+     * @param int $InvoiceDeliveryMethod
+     */
+    public function setInvoiceDeliveryMethod($InvoiceDeliveryMethod)
+    {
+        $this->InvoiceDeliveryMethod = $InvoiceDeliveryMethod;
+    }
 
-  /**
-   * @param int $InvoiceDeliveryMethod
-   */
-  public function setInvoiceDeliveryMethod($InvoiceDeliveryMethod) {
-    $this->InvoiceDeliveryMethod = $InvoiceDeliveryMethod;
-  }
+    /**
+     * @param string $ProductCode
+     */
+    public function setProductCode($ProductCode)
+    {
+        $this->ProductCode = $ProductCode;
+    }
 
-  /**
-   * @param string $ProductCode
-   */
-  public function setProductCode($ProductCode) {
-    $this->ProductCode = $ProductCode;
-  }
+    /**
+     * @param int $PurchaseType
+     */
+    public function setPurchaseType($PurchaseType)
+    {
+        $this->PurchaseType = $PurchaseType;
+    }
 
-  /**
-   * @param int $PurchaseType
-   */
-  public function setPurchaseType($PurchaseType) {
-    $this->PurchaseType = $PurchaseType;
-  }
+    /**
+     * @param string $SalesPerson
+     */
+    public function setSalesPerson($SalesPerson)
+    {
+        $this->SalesPerson = $SalesPerson;
+    }
 
-  /**
-   * @param string $SalesPerson
-   */
-  public function setSalesPerson($SalesPerson) {
-    $this->SalesPerson = $SalesPerson;
-  }
+    /**
+     * @param mixed $AdditionalInformation
+     */
+    public function setAdditionalInformation($AdditionalInformation)
+    {
+        $this->AdditionalInformation = $AdditionalInformation;
+    }
 
-  /**
-   * @param mixed $AdditionalInformation
-   */
-  public function setAdditionalInformation($AdditionalInformation) {
-    $this->AdditionalInformation = $AdditionalInformation;
-  }
+    /**
+     * @return \DateTime
+     */
+    public function getOrderDate()
+    {
+        return $this->OrderDate->format('Y-m-d\TH:i:sP');
+    }
 
-  /**
-   * @return \DateTime
-   */
-  public function getOrderDate() {
-    return $this->OrderDate->format('Y-m-d\TH:i:sP');
-  }
-
-  public function getMethod() {
-    return self::METHOD;
-  }
+    public function getMethod()
+    {
+        return self::METHOD;
+    }
 }

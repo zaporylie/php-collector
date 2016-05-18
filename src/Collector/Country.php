@@ -2,20 +2,19 @@
 
 namespace Collector;
 
-class Country {
+class Country
+{
+    const NORWAY = 'NO';
 
-  const NORWAY = 'NO';
+    const SWEDEN = 'SE';
 
-  const SWEDEN = 'SE';
+    const DENMARK = 'DK';
 
-  const DENMARK = 'DK';
+    const FINLAND = 'FI';
 
-  const FINLAND = 'FI';
+    const GERMANY = 'DE';
 
-  const GERMANY = 'DE';
+    const AUSTRIA = 'AT';
 
-  const AUSTRIA = 'AT';
-
-  const NETHERLANDS = 'NL';
-
+    const NETHERLANDS = 'NL';
 }

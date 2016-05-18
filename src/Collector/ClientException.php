@@ -3,9 +3,8 @@
 namespace Collector;
 
 /**
- * Class ClientException
- * @package Collector
+ * Class ClientException.
  */
-class ClientException extends \Exception {
-  
+class ClientException extends \Exception
+{
 }

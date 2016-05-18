@@ -2,25 +2,29 @@
 
 namespace Collector\Data;
 
-trait CorrelationIdTrait {
+/**
+ * Class CorrelationIdTrait.
+ */
+trait CorrelationIdTrait
+{
+    /**
+     * @var string
+     */
+    protected $correlationId;
 
-  /**
-   * @var string
-   */
-  protected $correlationId;
+    /**
+     * @return string
+     */
+    public function getCorrelationId()
+    {
+        return $this->correlationId;
+    }
 
-  /**
-   * @return string
-   */
-  public function getCorrelationId() {
-    return $this->correlationId;
-  }
-
-  /**
-   * @param string $correlationId
-   */
-  public function setCorrelationId($correlationId) {
-    $this->correlationId = $correlationId;
-  }
-
+    /**
+     * @param string $correlationId
+     */
+    public function setCorrelationId($correlationId)
+    {
+        $this->correlationId = $correlationId;
+    }
 }

@@ -8,33 +8,37 @@ use Collector\Data\InvoiceTrait;
 use Collector\InvoiceService;
 use Collector\ServiceInterface;
 
-class ReplaceInvoice extends InvoiceService implements ServiceInterface {
+/**
+ * Class ReplaceInvoice.
+ */
+class ReplaceInvoice extends InvoiceService implements ServiceInterface
+{
+    use HeaderTrait;
+    use InvoiceTrait;
 
-  use HeaderTrait;
-  use InvoiceTrait;
+    /**
+     * Collector method.
+     */
+    const METHOD = 'ReplaceInvoice';
 
-  /**
-   * Collector method.
-   */
-  const METHOD = 'ReplaceInvoice';
+    /**
+     * @var InvoiceRow[]
+     */
+    protected $InvoiceRows;
 
-  /**
-   * @var InvoiceRow[]
-   */
-  protected $InvoiceRows;
+    /**
+     * @param \Collector\Data\InvoiceRow[] $InvoiceRows
+     */
+    public function setInvoiceRows(array $InvoiceRows)
+    {
+        $this->InvoiceRows = $InvoiceRows;
+    }
 
-  /**
-   * @param \Collector\Data\InvoiceRow[] $InvoiceRows
-   */
-  public function setInvoiceRows(array $InvoiceRows) {
-    $this->InvoiceRows = $InvoiceRows;
-  }
-
-  /**
-   * @return string
-   */
-  public function getMethod() {
-    return self::METHOD;
-  }
-
+    /**
+     * @return string
+     */
+    public function getMethod()
+    {
+        return self::METHOD;
+    }
 }

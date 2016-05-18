@@ -2,25 +2,29 @@
 
 namespace Collector\Data;
 
-trait InvoiceTrait {
+/**
+ * Class InvoiceTrait.
+ */
+trait InvoiceTrait
+{
+    /**
+     * @var string
+     */
+    protected $InvoiceNo;
 
-  /**
-   * @var string
-   */
-  protected $InvoiceNo;
+    /**
+     * @return string
+     */
+    public function getInvoiceNo()
+    {
+        return $this->InvoiceNo;
+    }
 
-  /**
-   * @return string
-   */
-  public function getInvoiceNo() {
-    return $this->InvoiceNo;
-  }
-
-  /**
-   * @param string $InvoiceNo
-   */
-  public function setInvoiceNo($InvoiceNo) {
-    $this->InvoiceNo = $InvoiceNo;
-  }
-
+    /**
+     * @param string $InvoiceNo
+     */
+    public function setInvoiceNo($InvoiceNo)
+    {
+        $this->InvoiceNo = $InvoiceNo;
+    }
 }
