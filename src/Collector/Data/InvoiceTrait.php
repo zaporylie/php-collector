@@ -7,20 +7,20 @@ trait InvoiceTrait {
   /**
    * @var string
    */
-  protected $invoiceNo;
+  protected $InvoiceNo;
 
   /**
    * @return string
    */
   public function getInvoiceNo() {
-    return $this->invoiceNo;
+    return $this->InvoiceNo;
   }
 
   /**
-   * @param string $invoiceNo
+   * @param string $InvoiceNo
    */
-  public function setInvoiceNo($invoiceNo) {
-    $this->invoiceNo = $invoiceNo;
+  public function setInvoiceNo($InvoiceNo) {
+    $this->InvoiceNo = $InvoiceNo;
   }
 
 }
