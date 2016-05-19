@@ -2,6 +2,7 @@
 
 namespace Collector\Request;
 
+use Collector\Collector;
 use Collector\InvoiceService;
 use Collector\ServiceInterface;
 use Collector\Data\HeaderTrait;
@@ -273,7 +274,7 @@ class AddInvoice extends InvoiceService implements ServiceInterface
      */
     public function getOrderDate()
     {
-        return $this->OrderDate->format('Y-m-d\TH:i:sP');
+        return $this->OrderDate->format(Collector::DATE_FORMAT);
     }
 
     public function getMethod()

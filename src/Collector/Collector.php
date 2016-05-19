@@ -10,4 +10,6 @@ class Collector
     const PRODUCTION_URL_PANEL = 'https://commerce.collector.se/portal';
 
     const TEST_URL_PANEL = 'https://commerce.collector.se/testportal';
+
+    const DATE_FORMAT = 'Y-m-d\TH:i:sP';
 }
