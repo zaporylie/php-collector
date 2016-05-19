@@ -14,6 +14,15 @@ abstract class InvoiceService implements \JsonSerializable
     const SCHEMA = 'InvoiceService';
 
     /**
+     * InvoiceService constructor.
+     * @param string $countryCode
+     */
+    public function __construct($countryCode)
+    {
+        $this->CountryCode = $countryCode;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function getWsdl()

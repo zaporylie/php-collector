@@ -18,6 +18,15 @@ abstract class InformationService implements \JsonSerializable
     const SCHEMA = 'InformationService';
 
     /**
+     * InformationService constructor.
+     * @param string $countryCode
+     */
+    public function __construct($countryCode)
+    {
+        $this->CountryCode = $countryCode;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function getWsdl()
