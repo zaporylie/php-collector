@@ -40,52 +40,29 @@ class BaseAddress implements \JsonSerializable
      * @var string
      */
     protected $CountryCode;
-
+    
     /**
-     * @return string
+     * BaseAddress constructor.
+     * @param $address1
+     * @param $address2
+     * @param $cOAddress
+     * @param $postalCode
+     * @param $city
+     * @param $countryCode
      */
-    public function getAddress1()
-    {
-        return $this->Address1;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAddress2()
-    {
-        return $this->Address2;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCOAddress()
-    {
-        return $this->COAddress;
-    }
-
-    /**
-     * @return string
-     */
-    public function getPostalCode()
-    {
-        return $this->PostalCode;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCity()
-    {
-        return $this->City;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCountryCode()
-    {
-        return $this->CountryCode;
+    public function __construct(
+        $address1,
+        $address2,
+        $cOAddress,
+        $postalCode,
+        $city,
+        $countryCode
+    ) {
+        $this->Address1 = $address1;
+        $this->Address2 = $address2;
+        $this->COAddress = $cOAddress;
+        $this->PostalCode = $postalCode;
+        $this->City = $city;
+        $this->CountryCode = $countryCode;
     }
 }

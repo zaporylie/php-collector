@@ -38,11 +38,6 @@ class Address extends BaseAddress
     protected $Email;
 
     /**
-     * @var string
-     */
-    protected $CountryCode;
-
-    /**
      * Address constructor.
      *
      * @param $firstname
@@ -72,16 +67,10 @@ class Address extends BaseAddress
         $cellPhoneNumber = null,
         $email = null
     ) {
-    
+        parent::__construct($address1, $address2, $cOAddress, $postalCode, $city, $countryCode);
         $this->Firstname = $firstname;
         $this->Lastname = $lastname;
-        $this->Address1 = $address1;
-        $this->PostalCode = $postalCode;
-        $this->City = $city;
-        $this->CountryCode = $countryCode;
         $this->Companyname = $companyName;
-        $this->Address2 = $address2;
-        $this->COAddress = $cOAddress;
         $this->PhoneNumber = $phoneNumber;
         $this->CellPhoneNumber = $cellPhoneNumber;
         $this->Email = $email;
