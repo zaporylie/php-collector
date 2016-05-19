@@ -7,15 +7,18 @@
         }
     ],
     "scripts": {
+        "post-install-cmd": "if [ ! -f 'examples/config.yml' ]; then echo 'username: \npassword: \nemail: ' >> examples/config.yml; fi",
+        "post-update-cmd": "if [ ! -f 'examples/config.yml' ]; then echo 'username: \npassword: \nemail: ' >> examples/config.yml; fi",
         "test": "phpunit ./test/unit/",
-        "test-style": "phpcs --standard=PSR2 -p src",
-        "fix-style": "phpcbf --standard=PSR2 -p src"
+        "test-style": "phpcs --standard=PSR2 -p ./src ./examples",
+        "fix-style": "phpcbf --standard=PSR2 -p ./src ./examples"
     },
     "require": {
         "php": "^5.4 || ^7.0"
     },
     "require-dev": {
         "phpunit/phpunit": "4.3.*",
+        "symfony/yaml": "~2.0",
         "squizlabs/php_codesniffer": "2.*"
     },
     "autoload": {
