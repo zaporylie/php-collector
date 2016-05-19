@@ -27,6 +27,21 @@ class PartCreditInvoice extends InvoiceService implements ServiceInterface
     protected $ArticleList;
 
     /**
+     * PartCreditInvoice constructor.
+     * @param string $countryCode
+     * @param string $invoiceNo
+     * @param \DateTime $creditDate
+     * @param \Collector\Data\ArticleList[] $articleList
+     */
+    public function __construct($countryCode, $invoiceNo, \DateTime $creditDate, array $articleList)
+    {
+        parent::__construct($countryCode);
+        $this->InvoiceNo = $invoiceNo;
+        $this->CreditDate = $creditDate;
+        $this->ArticleList = $articleList;
+    }
+
+    /**
      * @param \Collector\Data\ArticleList[] $ArticleList
      */
     public function setArticleList(array $ArticleList)
