@@ -31,6 +31,8 @@ try {
     );
     $client->setService($invoice);
     var_dump($old = $client->call());
+} catch (\Collector\ClientException $e) {
+    var_dump($e);
 } catch (Exception $e) {
     var_dump($e);
 }

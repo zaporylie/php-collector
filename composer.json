@@ -26,7 +26,8 @@
             "Collector\\": "src/Collector/",
             "Collector\\Request\\": "src/Collector/Request/",
             "Collector\\Response\\": "src/Collector/Response/",
-            "Collector\\Data\\": "src/Collector/Data/"
+            "Collector\\Data\\": "src/Collector/Data/",
+            "Collector\\Error\\": "src/Collector/Error/"
         }
     }
 }
