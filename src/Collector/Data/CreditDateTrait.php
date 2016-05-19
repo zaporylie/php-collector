@@ -8,7 +8,8 @@ use Collector\Collector;
  * Class CreditDateTrait
  * @package Collector\Data
  */
-trait CreditDateTrait {
+trait CreditDateTrait
+{
     /**
      * @var \DateTime
      */
