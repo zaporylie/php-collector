@@ -22,4 +22,14 @@ class GetAccounts extends InformationService implements ServiceInterface
     {
         return self::METHOD;
     }
+
+    /**
+     * @param $results
+     * @return mixed
+     */
+    public function parseResults($results)
+    {
+        $results->Accounts = $results->Accounts->Account;
+        return $results;
+    }
 }
