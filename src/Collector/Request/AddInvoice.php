@@ -3,6 +3,7 @@
 namespace Collector\Request;
 
 use Collector\Collector;
+use Collector\Data\CustomerTrait;
 use Collector\Data\InvoiceDeliveryMethodTrait;
 use Collector\InvoiceService;
 use Collector\ServiceInterface;
@@ -17,6 +18,7 @@ class AddInvoice extends InvoiceService implements ServiceInterface
 
     use RegNoTrait;
     use InvoiceDeliveryMethodTrait;
+    use CustomerTrait;
 
     /**
      * @var string (optional)
@@ -27,11 +29,6 @@ class AddInvoice extends InvoiceService implements ServiceInterface
      * @var string
      */
     protected $Currency;
-
-    /**
-     * @var string (optional)
-     */
-    protected $CustomerNo;
 
     /**
      * @var string (optional)
@@ -157,14 +154,6 @@ class AddInvoice extends InvoiceService implements ServiceInterface
     public function setCurrency($Currency)
     {
         $this->Currency = $Currency;
-    }
-
-    /**
-     * @param string $CustomerNo
-     */
-    public function setCustomerNo($CustomerNo)
-    {
-        $this->CustomerNo = $CustomerNo;
     }
 
     /**
