@@ -25,6 +25,19 @@ class PartActivateInvoice extends InvoiceService implements ServiceInterface
     protected $ArticleList;
 
     /**
+     * PartActivateInvoice constructor.
+     * @param string $countryCode
+     * @param string $invoiceNo
+     * @param \Collector\Data\ArticleList[] $articleList
+     */
+    public function __construct($countryCode, $invoiceNo, array $articleList)
+    {
+        parent::__construct($countryCode);
+        $this->InvoiceNo = $invoiceNo;
+        $this->ArticleList = $articleList;
+    }
+
+    /**
      * @param \Collector\Data\ArticleList[] $ArticleList
      */
     public function setArticleList(array $ArticleList)
