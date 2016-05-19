@@ -2,7 +2,6 @@
 
 namespace Collector\Request;
 
-use Collector\Data\HeaderTrait;
 use Collector\Data\RegNoTrait;
 use Collector\InformationService;
 use Collector\ServiceInterface;
@@ -13,7 +12,6 @@ use Collector\ServiceInterface;
  */
 class GetAccounts extends InformationService implements ServiceInterface
 {
-    use HeaderTrait;
     use RegNoTrait;
 
     const METHOD = 'GetAccounts';

@@ -2,9 +2,12 @@
 
 namespace Collector;
 
+use Collector\Data\HeaderTrait;
+
 abstract class InvoiceService implements \JsonSerializable
 {
     use Serializer;
+    use HeaderTrait;
 
     const WSDL = 'InvoiceServiceV32.svc';
 

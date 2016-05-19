@@ -2,7 +2,6 @@
 
 namespace Collector\Request;
 
-use Collector\Data\HeaderTrait;
 use Collector\Data\InvoiceRow;
 use Collector\Data\InvoiceTrait;
 use Collector\InvoiceService;
@@ -13,7 +12,6 @@ use Collector\ServiceInterface;
  */
 class ReplaceInvoice extends InvoiceService implements ServiceInterface
 {
-    use HeaderTrait;
     use InvoiceTrait;
 
     /**

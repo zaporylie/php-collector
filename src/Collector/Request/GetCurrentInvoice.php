@@ -2,9 +2,7 @@
 
 namespace Collector\Request;
 
-use Collector\Data\HeaderTrait;
 use Collector\Data\InvoiceTrait;
-use Collector\Data\RegNoTrait;
 use Collector\InformationService;
 use Collector\ServiceInterface;
 
@@ -14,7 +12,6 @@ use Collector\ServiceInterface;
  */
 class GetCurrentInvoice extends InformationService implements ServiceInterface
 {
-    use HeaderTrait;
     use InvoiceTrait;
 
     const METHOD = 'GetCurrentInvoice';

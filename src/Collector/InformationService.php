@@ -2,6 +2,8 @@
 
 namespace Collector;
 
+use Collector\Data\HeaderTrait;
+
 /**
  * Class InformationService
  * @package Collector
@@ -9,6 +11,7 @@ namespace Collector;
 abstract class InformationService implements \JsonSerializable
 {
     use Serializer;
+    use HeaderTrait;
 
     const WSDL = 'Informationservice.svc';
 

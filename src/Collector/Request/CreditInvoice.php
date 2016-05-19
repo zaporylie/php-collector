@@ -3,7 +3,6 @@
 namespace Collector\Request;
 
 use Collector\Collector;
-use Collector\Data\HeaderTrait;
 use Collector\Data\InvoiceTrait;
 use Collector\InvoiceService;
 use Collector\ServiceInterface;
@@ -13,7 +12,6 @@ use Collector\ServiceInterface;
  */
 class CreditInvoice extends InvoiceService implements ServiceInterface
 {
-    use HeaderTrait;
     use InvoiceTrait;
 
     const METHOD = 'CreditInvoice';

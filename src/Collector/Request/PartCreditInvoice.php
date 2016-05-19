@@ -4,7 +4,6 @@ namespace Collector\Request;
 
 use Collector\Collector;
 use Collector\Data\ArticleList;
-use Collector\Data\HeaderTrait;
 use Collector\Data\InvoiceTrait;
 use Collector\InvoiceService;
 use Collector\ServiceInterface;
@@ -14,7 +13,6 @@ use Collector\ServiceInterface;
  */
 class PartCreditInvoice extends InvoiceService implements ServiceInterface
 {
-    use HeaderTrait;
     use InvoiceTrait;
 
     /**

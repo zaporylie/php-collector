@@ -5,7 +5,6 @@ namespace Collector\Request;
 use Collector\Collector;
 use Collector\InvoiceService;
 use Collector\ServiceInterface;
-use Collector\Data\HeaderTrait;
 use Collector\Data\RegNoTrait;
 
 /**
@@ -16,7 +15,6 @@ class AddInvoice extends InvoiceService implements ServiceInterface
     const METHOD = 'AddInvoice';
 
     use RegNoTrait;
-    use HeaderTrait;
 
     /**
      * @var string (optional)
