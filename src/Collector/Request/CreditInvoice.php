@@ -18,6 +18,19 @@ class CreditInvoice extends InvoiceService implements ServiceInterface
     const METHOD = 'CreditInvoice';
 
     /**
+     * CancelInvoice constructor.
+     * @param string $countryCode
+     * @param string $invoiceNo
+     * @param \DateTime $creditDate
+     */
+    public function __construct($countryCode, $invoiceNo, \DateTime $creditDate)
+    {
+        parent::__construct($countryCode);
+        $this->InvoiceNo = $invoiceNo;
+        $this->CreditDate = $creditDate;
+    }
+
+    /**
      * @return string
      */
     public function getMethod()
