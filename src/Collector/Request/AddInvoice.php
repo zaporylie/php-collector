@@ -113,6 +113,37 @@ class AddInvoice extends InvoiceService implements ServiceInterface
     protected $AdditionalInformation;
 
     /**
+     * AddInvoice constructor.
+     * @param string $countryCode
+     * @param string $regNo
+     * @param string $currency
+     * @param \DateTime $orderDate
+     * @param \Collector\Data\InvoiceRow[] $invoiceRows
+     * @param \Collector\Data\Address $invoiceAddress
+     * @param \Collector\Data\Address $deliveryAddress
+     * @param int $invoiceDeliveryMethod
+     */
+    public function __construct(
+        $countryCode,
+        $regNo,
+        $currency,
+        \DateTime $orderDate,
+        array $invoiceRows,
+        \Collector\Data\Address $invoiceAddress,
+        \Collector\Data\Address $deliveryAddress,
+        $invoiceDeliveryMethod
+    ) {
+        parent::__construct($countryCode);
+        $this->RegNo = $regNo;
+        $this->Currency = $currency;
+        $this->OrderDate = $orderDate;
+        $this->InvoiceRows = $invoiceRows;
+        $this->InvoiceAddress = $invoiceAddress;
+        $this->DeliveryAddress = $deliveryAddress;
+        $this->InvoiceDeliveryMethod = $invoiceDeliveryMethod;
+    }
+
+    /**
      * @param string $ClientIpAddress
      */
     public function setClientIpAddress($ClientIpAddress)
