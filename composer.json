@@ -11,7 +11,10 @@
     "scripts": {
         "post-install-cmd": "if [ ! -f 'examples/config.yml' ]; then echo 'username: \npassword: \nemail: ' >> examples/config.yml; fi",
         "post-update-cmd": "if [ ! -f 'examples/config.yml' ]; then echo 'username: \npassword: \nemail: ' >> examples/config.yml; fi",
-        "test": "phpunit ./test/unit/",
+        "test": [
+            "phpunit",
+            "composer test-style"
+        ],
         "test-style": "phpcs --standard=PSR2 -p -n ./src ./examples",
         "fix-style": "phpcbf --standard=PSR2 -p -n ./src ./examples"
     },
@@ -21,7 +24,8 @@
     "require-dev": {
         "phpunit/phpunit": "4.3.*",
         "symfony/yaml": "~2.0",
-        "squizlabs/php_codesniffer": "2.*"
+        "squizlabs/php_codesniffer": "2.*",
+        "satooshi/php-coveralls": "dev-master"
     },
     "autoload": {
         "psr-4": {
