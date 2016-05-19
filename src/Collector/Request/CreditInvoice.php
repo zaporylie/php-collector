@@ -2,7 +2,7 @@
 
 namespace Collector\Request;
 
-use Collector\Collector;
+use Collector\Data\CreditDateTrait;
 use Collector\Data\InvoiceTrait;
 use Collector\InvoiceService;
 use Collector\ServiceInterface;
@@ -13,29 +13,9 @@ use Collector\ServiceInterface;
 class CreditInvoice extends InvoiceService implements ServiceInterface
 {
     use InvoiceTrait;
+    use CreditDateTrait;
 
     const METHOD = 'CreditInvoice';
-
-    /**
-     * @var \DateTime
-     */
-    protected $CreditDate;
-
-    /**
-     * @param \DateTime $CreditDate
-     */
-    public function setCreditDate($CreditDate)
-    {
-        $this->CreditDate = $CreditDate;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getCreditDate()
-    {
-        return $this->CreditDate->format(Collector::DATE_FORMAT);
-    }
 
     /**
      * @return string
