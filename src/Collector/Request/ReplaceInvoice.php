@@ -25,6 +25,19 @@ class ReplaceInvoice extends InvoiceService implements ServiceInterface
     protected $InvoiceRows;
 
     /**
+     * ReplaceInvoice constructor.
+     * @param string $countryCode
+     * @param string $invoiceNo
+     * @param array $invoiceRows
+     */
+    public function __construct($countryCode, $invoiceNo, array $invoiceRows)
+    {
+        parent::__construct($countryCode);
+        $this->InvoiceNo = $invoiceNo;
+        $this->InvoiceRows = $invoiceRows;
+    }
+
+    /**
      * @param \Collector\Data\InvoiceRow[] $InvoiceRows
      */
     public function setInvoiceRows(array $InvoiceRows)
