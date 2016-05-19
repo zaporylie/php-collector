@@ -16,6 +16,17 @@ class CancelInvoice extends InvoiceService implements ServiceInterface
     const METHOD = 'CancelInvoice';
 
     /**
+     * CancelInvoice constructor.
+     * @param string $countryCode
+     * @param string $invoiceNo
+     */
+    public function __construct($countryCode, $invoiceNo)
+    {
+        parent::__construct($countryCode);
+        $this->InvoiceNo = $invoiceNo;
+    }
+
+    /**
      * @return string
      */
     public function getMethod()
