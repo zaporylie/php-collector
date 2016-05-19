@@ -36,6 +36,25 @@ class AdjustInvoice extends InvoiceService implements ServiceInterface
     protected $Vat;
 
     /**
+     * AdjustInvoice constructor.
+     * @param string $countryCode
+     * @param string $invoiceNo
+     * @param string $articleId
+     * @param string $description
+     * @param float $amount
+     * @param float $vat
+     */
+    public function __construct($countryCode, $invoiceNo, $articleId, $description, $amount, $vat)
+    {
+        parent::__construct($countryCode);
+        $this->InvoiceNo = $invoiceNo;
+        $this->ArticleId = $articleId;
+        $this->Description = $description;
+        $this->Amount = $amount;
+        $this->Vat = $vat;
+    }
+
+    /**
      * @param string $ArticleId
      */
     public function setArticleId($ArticleId)
