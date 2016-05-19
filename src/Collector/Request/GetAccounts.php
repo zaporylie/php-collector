@@ -16,6 +16,9 @@ class GetAccounts extends InformationService implements ServiceInterface
 
     const METHOD = 'GetAccounts';
 
+    /**
+     * @return string
+     */
     public function getMethod()
     {
         return self::METHOD;

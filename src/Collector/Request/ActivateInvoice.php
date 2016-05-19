@@ -15,6 +15,9 @@ class ActivateInvoice extends InvoiceService implements ServiceInterface
 
     const METHOD = 'ActivateInvoice';
 
+    /**
+     * @return string
+     */
     public function getMethod()
     {
         return self::METHOD;

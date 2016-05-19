@@ -275,6 +275,9 @@ class AddInvoice extends InvoiceService implements ServiceInterface
         return $this->OrderDate->format(Collector::DATE_FORMAT);
     }
 
+    /**
+     * @return string
+     */
     public function getMethod()
     {
         return self::METHOD;

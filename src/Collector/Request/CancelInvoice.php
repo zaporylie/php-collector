@@ -15,6 +15,9 @@ class CancelInvoice extends InvoiceService implements ServiceInterface
 
     const METHOD = 'CancelInvoice';
 
+    /**
+     * @return string
+     */
     public function getMethod()
     {
         return self::METHOD;
