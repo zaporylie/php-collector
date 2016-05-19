@@ -3,6 +3,7 @@
 namespace Collector\Request;
 
 use Collector\Collector;
+use Collector\Data\InvoiceDeliveryMethodTrait;
 use Collector\InvoiceService;
 use Collector\ServiceInterface;
 use Collector\Data\RegNoTrait;
@@ -15,6 +16,7 @@ class AddInvoice extends InvoiceService implements ServiceInterface
     const METHOD = 'AddInvoice';
 
     use RegNoTrait;
+    use InvoiceDeliveryMethodTrait;
 
     /**
      * @var string (optional)
@@ -87,11 +89,6 @@ class AddInvoice extends InvoiceService implements ServiceInterface
      * @var int (optional)
      */
     protected $Gender;
-
-    /**
-     * @var int
-     */
-    protected $InvoiceDeliveryMethod;
 
     /**
      * @var string (optional)
@@ -225,14 +222,6 @@ class AddInvoice extends InvoiceService implements ServiceInterface
     public function setGender($Gender)
     {
         $this->Gender = $Gender;
-    }
-
-    /**
-     * @param int $InvoiceDeliveryMethod
-     */
-    public function setInvoiceDeliveryMethod($InvoiceDeliveryMethod)
-    {
-        $this->InvoiceDeliveryMethod = $InvoiceDeliveryMethod;
     }
 
     /**

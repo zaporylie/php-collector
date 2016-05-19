@@ -2,6 +2,7 @@
 
 namespace Collector\Request;
 
+use Collector\Data\InvoiceDeliveryMethodTrait;
 use Collector\Data\InvoiceTrait;
 use Collector\InvoiceService;
 use Collector\ServiceInterface;
@@ -12,13 +13,9 @@ use Collector\ServiceInterface;
 class SendInvoice extends InvoiceService implements ServiceInterface
 {
     use InvoiceTrait;
+    use InvoiceDeliveryMethodTrait;
 
     const METHOD = 'SendInvoice';
-
-    /**
-     * @var int
-     */
-    protected $InvoiceDeliveryMethod;
 
     /**
      * @var string (optional)
@@ -26,11 +23,18 @@ class SendInvoice extends InvoiceService implements ServiceInterface
     protected $Email;
 
     /**
-     * @param int $InvoiceDeliveryMethod
+     * SendInvoice constructor.
+     * @param string $countryCode
+     * @param $invoiceNo
+     * @param $invoiceDeliveryMethod
+     * @param null $email
      */
-    public function setInvoiceDeliveryMethod($InvoiceDeliveryMethod)
+    public function __construct($countryCode, $invoiceNo, $invoiceDeliveryMethod, $email = null)
     {
-        $this->InvoiceDeliveryMethod = $InvoiceDeliveryMethod;
+        parent::__construct($countryCode);
+        $this->InvoiceNo = $invoiceNo;
+        $this->InvoiceDeliveryMethod = $invoiceDeliveryMethod;
+        $this->Email = $email;
     }
 
     /**
