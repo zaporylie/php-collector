@@ -1,5 +1,6 @@
 {
     "name": "zaporylie/php-collector",
+    "description": "Collector Bank PHP library",
     "authors": [
         {
             "name": "Jakub Piasecki",
