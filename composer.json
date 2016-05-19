@@ -1,6 +1,7 @@
 {
     "name": "zaporylie/php-collector",
     "description": "Collector Bank PHP library",
+    "license": "MIT License",
     "authors": [
         {
             "name": "Jakub Piasecki",
