@@ -1,24 +1,18 @@
 <?php
 
-namespace Collector\Request;
+namespace Collector\Data;
 
-use Collector\Collector;
-use Collector\Data\CustomerTrait;
-use Collector\Data\InvoiceDeliveryMethodTrait;
-use Collector\InvoiceService;
-use Collector\ServiceInterface;
-use Collector\Data\RegNoTrait;
+use Collector\Serializer;
 
 /**
  * Class AddInvoice.
  */
-class AddInvoice extends InvoiceService implements ServiceInterface
+class Invoice implements \JsonSerializable
 {
-    const METHOD = 'AddInvoice';
-
     use RegNoTrait;
     use InvoiceDeliveryMethodTrait;
     use CustomerTrait;
+    use Serializer;
 
     /**
      * @var string (optional)
@@ -36,7 +30,7 @@ class AddInvoice extends InvoiceService implements ServiceInterface
     protected $OrderNo;
 
     /**
-     * @var \DateTime
+     * @var \Collector\Data\DateTime
      */
     protected $OrderDate;
 
@@ -111,26 +105,23 @@ class AddInvoice extends InvoiceService implements ServiceInterface
 
     /**
      * AddInvoice constructor.
-     * @param string $countryCode
      * @param string $regNo
      * @param string $currency
-     * @param \DateTime $orderDate
+     * @param \Collector\Data\DateTime $orderDate
      * @param \Collector\Data\InvoiceRow[] $invoiceRows
      * @param \Collector\Data\Address $invoiceAddress
      * @param \Collector\Data\Address $deliveryAddress
      * @param int $invoiceDeliveryMethod
      */
     public function __construct(
-        $countryCode,
         $regNo,
         $currency,
-        \DateTime $orderDate,
+        \Collector\Data\DateTime $orderDate,
         array $invoiceRows,
         \Collector\Data\Address $invoiceAddress,
         \Collector\Data\Address $deliveryAddress,
         $invoiceDeliveryMethod
     ) {
-        parent::__construct($countryCode);
         $this->RegNo = $regNo;
         $this->Currency = $currency;
         $this->OrderDate = $orderDate;
@@ -165,9 +156,9 @@ class AddInvoice extends InvoiceService implements ServiceInterface
     }
 
     /**
-     * @param \DateTime $OrderDate
+     * @param \Collector\Data\DateTime $OrderDate
      */
-    public function setOrderDate($OrderDate)
+    public function setOrderDate(\Collector\Data\DateTime $OrderDate)
     {
         $this->OrderDate = $OrderDate;
     }
@@ -274,21 +265,5 @@ class AddInvoice extends InvoiceService implements ServiceInterface
     public function setAdditionalInformation($AdditionalInformation)
     {
         $this->AdditionalInformation = $AdditionalInformation;
-    }
-
-    /**
-     * @return \DateTime
-     */
-    public function getOrderDate()
-    {
-        return $this->OrderDate->format(Collector::DATE_FORMAT);
-    }
-
-    /**
-     * @return string
-     */
-    public function getMethod()
-    {
-        return self::METHOD;
     }
 }

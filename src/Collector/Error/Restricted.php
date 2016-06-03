@@ -3,10 +3,10 @@
 namespace Collector\Error;
 
 /**
- * Class Internal
+ * Class Restricted
  * @package Collector\Error
  */
-abstract class Internal extends External
+abstract class Restricted extends Unrestricted
 {
     static public $DENIED_TO_PURCHASE = 'When a customer is denied to do purchase, for example blocked for purchase based on different reasons, please contact Collector for more information.';
     static public $CREDIT_CHECK_DENIED = 'The credit check is not approved.';

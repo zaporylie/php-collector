@@ -19,32 +19,22 @@ try {
         'FINNSENES',
         \Collector\Country::NORWAY
     );
-    $invoice = new Collector\Request\AddInvoice(
-        \Collector\Country::NORWAY,
+    $invoice = new Collector\Invoice($client, \Collector\Country::NORWAY);
+    $invoice->addInvoice(new \Collector\Data\Invoice(
         '06073910828',
         'NOK',
-        new \DateTime('yesterday'),
+        new \Collector\Data\DateTime('yesterday'),
         $rows,
         $address,
         $address,
         \Collector\Data\InvoiceDeliveryMethodTrait::$InvoiceDeliveryMethodEmail
-    );
-    $client->setService($invoice);
-    var_dump($old = $client->call());
+    ))->activateInvoice();
 
-    $invoice = new Collector\Request\ActivateInvoice(\Collector\Country::NORWAY, $old->InvoiceNo);
-    $client->setService($invoice);
-    var_dump($new = $client->call());
-
-    $rows = [ new \Collector\Data\ArticleList('1234', 'Test', 2) ];
-    $invoice = new Collector\Request\PartCreditInvoice(
-        \Collector\Country::NORWAY,
-        $old->InvoiceNo,
-        new \DateTime(),
-        $rows
-    );
-    $client->setService($invoice);
-    var_dump($new = $client->call());
+    $rows = [
+        new \Collector\Data\ArticleList('1234', 'Test', 2),
+    ];
+    $response = $invoice->partCreditInvoice($rows, new \Collector\Data\DateTime())->getLastResponse();
+    var_dump($response);
 } catch (Exception $e) {
     var_dump($e);
 }

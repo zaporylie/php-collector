@@ -3,10 +3,10 @@
 namespace Collector\Error;
 
 /**
- * Class External
+ * Class Unrestricted
  * @package Collector\Error
  */
-abstract class External
+abstract class Unrestricted
 {
     static public $DENIED_TO_PURCHASE = '';
     static public $CREDIT_CHECK_DENIED = '';

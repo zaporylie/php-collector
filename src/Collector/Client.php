@@ -5,7 +5,7 @@ namespace Collector;
 /**
  * Class Client.
  */
-class Client
+class Client implements ClientInterface
 {
     const PRODUCTION = 'https://ecommerce.collector.se/v3.0/';
 
@@ -44,9 +44,88 @@ class Client
     protected $ip;
 
     /**
-     * @var ServiceInterface
+     * @var
      */
-    protected $service;
+    protected $wsdl;
+
+    /**
+     * @var
+     */
+    protected $schema;
+
+    /**
+     * @var
+     */
+    protected $method;
+
+    /**
+     * @var
+     */
+    protected $data;
+
+    /**
+     * @return array
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMethod()
+    {
+        return $this->method;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSchema()
+    {
+        return $this->schema;
+    }
+
+    /**
+     * @return string
+     */
+    public function getWsdl()
+    {
+        return $this->wsdl;
+    }
+
+    /**
+     * @param string $method
+     */
+    public function setMethod($method)
+    {
+        $this->method = $method;
+    }
+
+    /**
+     * @param array $data
+     */
+    public function setData(array $data)
+    {
+        $this->data = $data;
+    }
+
+    /**
+     * @param string $schema
+     */
+    public function setSchema($schema)
+    {
+        $this->schema = $schema;
+    }
+
+    /**
+     * @param string $wsdl
+     */
+    public function setWsdl($wsdl)
+    {
+        $this->wsdl = $wsdl;
+    }
 
     /**
      * Client constructor.
@@ -64,26 +143,18 @@ class Client
     }
 
     /**
-     * @param \Collector\ServiceInterface $service
-     */
-    public function setService(ServiceInterface $service)
-    {
-        $this->service = $service;
-    }
-
-    /**
      * @return mixed
      *
      * @throws \Collector\ClientException
      */
     public function call()
     {
-        $path = $this->environment.$this->service->getWsdl().self::WSDL_SUFFIX;
+        $path = $this->environment.$this->getWsdl().self::WSDL_SUFFIX;
         $client = new \SoapClient($path, $this->options);
 
         $headers = array();
 
-        $namespace = self::SCHEMA_PREFIX.$this->service->getSchema();
+        $namespace = self::SCHEMA_PREFIX.$this->getSchema();
 
         $headers[] = new \SoapHeader($namespace, 'ClientIpAddress', $this->ip);
         $headers[] = new \SoapHeader($namespace, 'Username', $this->username);
@@ -91,11 +162,11 @@ class Client
         $client->__setSoapHeaders($headers);
 
         try {
-            $results = $client->{$this->service->getMethod()}($this->service->getData());
+            $results = $client->{$this->getMethod()}($this->getData());
         } catch (\Exception $e) {
             throw new ClientException($e->getMessage(), $e->getCode(), $e);
         }
 
-        return $this->service->parseResults($results);
+        return $results;
     }
 }

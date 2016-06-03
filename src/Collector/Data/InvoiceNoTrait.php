@@ -5,7 +5,7 @@ namespace Collector\Data;
 /**
  * Class InvoiceTrait.
  */
-trait InvoiceTrait
+trait InvoiceNoTrait
 {
     /**
      * @var string

@@ -19,27 +19,21 @@ try {
         'FINNSENES',
         \Collector\Country::NORWAY
     );
-    $invoice = new Collector\Request\AddInvoice(
-        \Collector\Country::NORWAY,
+
+    $invoice = new Collector\Invoice($client, \Collector\Country::NORWAY);
+    $invoice->addInvoice(new \Collector\Data\Invoice(
         '06073910828',
         'NOK',
-        new \DateTime('yesterday'),
+        new \Collector\Data\DateTime('yesterday'),
         $rows,
         $address,
         $address,
-        \Collector\Data\InvoiceDeliveryMethodTrait::$InvoiceDeliveryMethodEmail
-    );
-    $client->setService($invoice);
-    var_dump($old = $client->call());
+        Collector\Invoice::EMAIL
+    ))->activateInvoice();
 
-    $invoice = new Collector\Request\ActivateInvoice(\Collector\Country::NORWAY, $old->InvoiceNo);
-    $client->setService($invoice);
-    var_dump($new = $client->call());
-
-    $invoice = new Collector\Request\GetCurrentInvoice(\Collector\Country::NORWAY);
-    $invoice->setInvoiceNo($old->InvoiceNo);
-    $client->setService($invoice);
-    var_dump($client->call());
+    $information = new \Collector\Information($client, \Collector\Country::NORWAY);
+    $response = $information->getAccountTransactions('InvoiceNo', $invoice->getInvoiceNo());
+    var_dump($response);
 } catch (Exception $e) {
     var_dump($e);
 }

@@ -2,12 +2,25 @@
 
 namespace Collector;
 
+use Collector\Data\HeaderTrait;
+use Collector\Data\InvoiceNoTrait;
+
 /**
  * Class Invoice
  * @package Collector
  */
-abstract class Invoice
+class Invoice
 {
+
+    use HeaderTrait;
+    use InvoiceNoTrait;
+
+    const WSDL = 'InvoiceServiceV32.svc';
+    const SCHEMA = 'InvoiceService';
+
+    const NORMAL_MAIL = 1;
+    const EMAIL = 2;
+
     const STATUS_ON_HOLD = 0;
     const STATUS_PENDING = 1;
     const STATUS_ACTIVATED = 2;
@@ -45,4 +58,166 @@ abstract class Invoice
         self::ACTIVATION_AUTO => 'Auto activation, will automatically active the invoice so it can be sent out directly. This can only be used when the order can be delivered directly.',
         self::ACTIVATION_PRE_PAID => 'Pre-Paid invoice. The purchase will be activated first when an invoice is paid. Not used at the moment.',
     ];
+
+    /**
+     * @var \Collector\ClientInterface
+     */
+    protected $client;
+
+    /**
+     * @var
+     */
+    protected $lastResponse;
+
+    public function __construct(ClientInterface $client, $countryCode)
+    {
+        $this->client = $client;
+        $this->setCountryCode($countryCode);
+    }
+
+    public function addInvoice(\Collector\Data\Invoice $invoice)
+    {
+        $data = $this->getData($invoice);
+        $this->call('AddInvoice', $data);
+        $this->setInvoiceNo($this->getLastResponse()->InvoiceNo);
+        return $this;
+    }
+
+    public function activateInvoice()
+    {
+        $data = $this->getData();
+        $this->call('ActivateInvoice', $data);
+        return $this;
+    }
+
+    public function adjustInvoice($articleId, $description, $amount, $vat)
+    {
+        $data = $this->getData([
+            'ArticleId' => $articleId,
+            'Description' => $description,
+            'Amount' => $amount,
+            'Vat' => $vat,
+        ]);
+        $this->call('AdjustInvoice', $data);
+        return $this;
+    }
+
+    public function cancelInvoice()
+    {
+        $data = $this->getData();
+        $this->call('CancelInvoice', $data);
+        $this->setInvoiceNo(null);
+        return $this;
+    }
+
+    public function creditInvoice(\Collector\Data\DateTime $creditDate = null)
+    {
+        $data = $this->getData([
+            'CreditDate' => $creditDate ?: new \Collector\Data\DateTime(),
+        ]);
+        $this->call('CreditInvoice', $data);
+        $this->setInvoiceNo(null);
+        return $this;
+    }
+
+    public function extendDueDate()
+    {
+        $data = $this->getData();
+        $this->call('ExtendDueDate', $data);
+        return $this;
+    }
+
+    public function partActivateInvoice(array $articleList)
+    {
+        $data = $this->getData([
+            'ArticleList' => $articleList,
+        ]);
+        $this->call('PartActivateInvoice', $data);
+        $this->setInvoiceNo($this->getLastResponse()->NewInvoiceNo);
+        return $this;
+    }
+
+    public function partCreditInvoice(array $articleList, \Collector\Data\DateTime $creditDate = null)
+    {
+        $data = $this->getData([
+            'ArticleList' => $articleList,
+            'CreditDate' => $creditDate ?: new \Collector\Data\DateTime(),
+        ]);
+        $this->call('PartCreditInvoice', $data);
+        return $this;
+    }
+
+    public function replaceInvoice(array $invoiceRows)
+    {
+        $data = $this->getData([
+            'InvoiceRows' => $invoiceRows,
+        ]);
+        $this->call('ReplaceInvoice', $data);
+        return $this;
+    }
+
+    public function sendInvoice($invoiceDeliveryMethod, $email = null)
+    {
+        $data = $this->getData([
+            'InvoiceDeliveryMethod' => $invoiceDeliveryMethod,
+            'Email' => $email,
+        ]);
+        $this->call('SendInvoice', $data);
+        return $this;
+    }
+
+    /**
+     * @param mixed $lastResponse
+     */
+    public function setLastResponse($lastResponse)
+    {
+        $this->lastResponse = $lastResponse;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastResponse()
+    {
+        return $this->lastResponse;
+    }
+
+    /**
+     * @param string $method
+     * @param array $data
+     * @return mixed
+     */
+    protected function call($method, array $data = [])
+    {
+        $this->client->setMethod($method);
+        $this->client->setWsdl(self::WSDL);
+        $this->client->setSchema(self::SCHEMA);
+        $this->client->setData($data);
+        $response = $this->client->call();
+        $this->setLastResponse($response);
+        return $response;
+    }
+
+    /**
+     * @return array
+     */
+    protected function getHeader()
+    {
+        return [
+            'CountryCode' => $this->getCountryCode(),
+            'CorrelationId' => $this->getCorrelationId(),
+            'StoreId' => $this->getStoreId(),
+            'InvoiceNo' => $this->getInvoiceNo(),
+        ];
+    }
+
+    /**
+     * @param array $data
+     * @return array
+     */
+    protected function getData($data = [])
+    {
+        $data = json_decode(json_encode($data), true) + $this->getHeader();
+        return array_filter($data);
+    }
 }

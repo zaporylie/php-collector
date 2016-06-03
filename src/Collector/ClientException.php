@@ -2,8 +2,8 @@
 
 namespace Collector;
 
-use Collector\Error\Internal;
-use Collector\Error\External;
+use Collector\Error\Restricted;
+use Collector\Error\Unrestricted;
 
 /**
  * Class ClientException.
@@ -38,16 +38,16 @@ class ClientException extends \Exception
         if (!isset($this->faultCode)) {
             $this->faultCode = 'UNHANDLED_EXCEPTION';
         }
-        if ($debug && isset(Internal::${$this->faultCode})) {
-            return Internal::${$this->faultCode};
+        if ($debug && isset(Restricted::${$this->faultCode})) {
+            return Restricted::${$this->faultCode};
         }
-        if ($language && isset(External::${$language}[$this->faultCode])) {
-            return External::${$language}[$this->faultCode];
+        if ($language && isset(Unrestricted::${$language}[$this->faultCode])) {
+            return Unrestricted::${$language}[$this->faultCode];
         }
-        if (isset(External::${$this->faultCode})) {
-            return External::${$this->faultCode};
+        if (isset(Unrestricted::${$this->faultCode})) {
+            return Unrestricted::${$this->faultCode};
         } else {
-            return External::$UNHANDLED_EXCEPTION;
+            return Unrestricted::$UNHANDLED_EXCEPTION;
         }
     }
 }

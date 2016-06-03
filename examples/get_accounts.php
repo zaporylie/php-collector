@@ -7,11 +7,9 @@ $credentials = $yaml->parse(file_get_contents(__DIR__.'/config.yml'));
 
 try {
     $client = new Collector\Client($credentials['username'], $credentials['password']);
-
-    $invoice = new Collector\Request\GetAccounts(\Collector\Country::NORWAY);
-    $invoice->setRegNo('06073910828');
-    $client->setService($invoice);
-    var_dump($client->call());
+    $information = new \Collector\Information($client, \Collector\Country::NORWAY);
+    $response = $information->getAccounts('RegNo', '06073910828');
+    var_dump($response);
 } catch (Exception $e) {
     var_dump($e);
 }
