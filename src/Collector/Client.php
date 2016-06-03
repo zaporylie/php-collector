@@ -91,7 +91,6 @@ class Client
         $client->__setSoapHeaders($headers);
 
         try {
-            var_dump($this->service->getData());
             $results = $client->{$this->service->getMethod()}($this->service->getData());
         } catch (\Exception $e) {
             throw new ClientException($e->getMessage(), $e->getCode(), $e);
