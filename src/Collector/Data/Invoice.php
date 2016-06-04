@@ -2,8 +2,6 @@
 
 namespace Collector\Data;
 
-use Collector\Serializer;
-
 /**
  * Class AddInvoice.
  */
@@ -12,7 +10,7 @@ class Invoice implements \JsonSerializable
     use RegNoTrait;
     use InvoiceDeliveryMethodTrait;
     use CustomerTrait;
-    use Serializer;
+    use SerializerTrait;
 
     /**
      * @var string (optional)

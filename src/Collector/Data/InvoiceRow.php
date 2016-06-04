@@ -2,14 +2,12 @@
 
 namespace Collector\Data;
 
-use Collector\Serializer;
-
 /**
  * Class InvoiceRow.
  */
 class InvoiceRow extends ArticleList
 {
-    use Serializer;
+    use SerializerTrait;
 
     /**
      * @var float

@@ -2,14 +2,12 @@
 
 namespace Collector\Data;
 
-use Collector\Serializer;
-
 /**
  * Class ArticleList.
  */
 class ArticleList implements \JsonSerializable
 {
-    use Serializer;
+    use SerializerTrait;
 
     /**
      * @var string

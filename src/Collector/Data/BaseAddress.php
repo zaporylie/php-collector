@@ -2,14 +2,12 @@
 
 namespace Collector\Data;
 
-use Collector\Serializer;
-
 /**
  * Class BaseAddress.
  */
 class BaseAddress implements \JsonSerializable
 {
-    use Serializer;
+    use SerializerTrait;
 
     /**
      * @var string

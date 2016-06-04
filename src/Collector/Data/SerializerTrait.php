@@ -1,8 +1,8 @@
 <?php
 
-namespace Collector;
+namespace Collector\Data;
 
-trait Serializer
+trait SerializerTrait
 {
     /**
      * @return array
