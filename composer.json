@@ -15,8 +15,8 @@
             "phpunit",
             "composer test-style"
         ],
-        "test-style": "phpcs --standard=PSR2 -p -n ./src ./examples",
-        "fix-style": "phpcbf --standard=PSR2 -p -n ./src ./examples"
+        "test-style": "phpcs --standard=PSR2 -p -n ./src ./examples ./test",
+        "fix-style": "phpcbf --standard=PSR2 -p -n ./src ./examples ./test"
     },
     "require": {
         "php": "^5.4 || ^7.0"

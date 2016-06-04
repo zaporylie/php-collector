@@ -63,4 +63,34 @@ class BaseAddress implements \JsonSerializable
         $this->City = $city;
         $this->CountryCode = $countryCode;
     }
+
+    public function getAddress1()
+    {
+        return $this->Address1;
+    }
+
+    public function getAddress2()
+    {
+        return $this->Address2;
+    }
+
+    public function getCity()
+    {
+        return $this->City;
+    }
+
+    public function getCOAddress()
+    {
+        return $this->COAddress;
+    }
+
+    public function getCountryCode()
+    {
+        return $this->CountryCode;
+    }
+
+    public function getPostalCode()
+    {
+        return $this->PostalCode;
+    }
 }

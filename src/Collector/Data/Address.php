@@ -75,4 +75,34 @@ class Address extends BaseAddress
         $this->CellPhoneNumber = $cellPhoneNumber;
         $this->Email = $email;
     }
+
+    public function getFirstname()
+    {
+        return $this->Firstname;
+    }
+
+    public function getLastname()
+    {
+        return $this->Lastname;
+    }
+
+    public function getCompanyname()
+    {
+        return $this->Companyname;
+    }
+
+    public function getPhoneNumber()
+    {
+        return $this->PhoneNumber;
+    }
+
+    public function getCellPhoneNumber()
+    {
+        return $this->CellPhoneNumber;
+    }
+
+    public function getEmail()
+    {
+        return $this->Email;
+    }
 }
