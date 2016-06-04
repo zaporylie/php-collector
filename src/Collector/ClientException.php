@@ -45,8 +45,8 @@ class ClientException extends \Exception
         if ($language && isset(Unrestricted::${$language}[$code])) {
             return Unrestricted::${$language}[$code];
         }
-        if (isset(Unrestricted::${$code})) {
-            return Unrestricted::${$code};
+        if (defined("Collector\\Error\\Unrestricted::$code")) {
+            return constant("Collector\\Error\\Unrestricted::$code");
         } else {
             return Unrestricted::UNHANDLED_EXCEPTION;
         }
