@@ -38,16 +38,17 @@ class ClientException extends \Exception
         if (!isset($this->faultCode)) {
             $this->faultCode = 'UNHANDLED_EXCEPTION';
         }
-        if ($debug && isset(Restricted::${$this->faultCode})) {
-            return Restricted::${$this->faultCode};
+        $code = $this->faultCode;
+        if ($debug && defined("Collector\\Error\\Restricted::$code")) {
+            return constant("Collector\\Error\\Restricted::$code");
         }
-        if ($language && isset(Unrestricted::${$language}[$this->faultCode])) {
-            return Unrestricted::${$language}[$this->faultCode];
+        if ($language && isset(Unrestricted::${$language}[$code])) {
+            return Unrestricted::${$language}[$code];
         }
-        if (isset(Unrestricted::${$this->faultCode})) {
-            return Unrestricted::${$this->faultCode};
+        if (isset(Unrestricted::${$code})) {
+            return Unrestricted::${$code};
         } else {
-            return Unrestricted::$UNHANDLED_EXCEPTION;
+            return Unrestricted::UNHANDLED_EXCEPTION;
         }
     }
 }

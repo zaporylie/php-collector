@@ -8,17 +8,17 @@ namespace Collector\Error;
  */
 abstract class Unrestricted
 {
-    static public $DENIED_TO_PURCHASE = '';
-    static public $CREDIT_CHECK_DENIED = '';
-    static public $ADDRESS_NOT_FOUND = '';
-    static public $RESERVATION_NOT_APPROVED = '';
-    static public $PURCHASE_AMOUNT_GREATER_THAN_MAX_CREDIT_AMOUNT = '';
-    static public $INVALID_REGISTRATION_NUMBER = '';
-    static public $AGREEMENT_RULES_VALIDATION_FAILED = '';
-    static public $UNHANDLED_EXCEPTION = '';
-    static public $HOUSE_NUMBER_IS_OUT_OF_RANGE = '';
-    static public $CREDITVALIDATION_HOUSE_NUMBER_IS_REQUIRED = '';
-    static public $INVALID_HOUSE_NUMBER = '';
+    const DENIED_TO_PURCHASE = '';
+    const CREDIT_CHECK_DENIED = '';
+    const ADDRESS_NOT_FOUND = '';
+    const RESERVATION_NOT_APPROVED = '';
+    const PURCHASE_AMOUNT_GREATER_THAN_MAX_CREDIT_AMOUNT = '';
+    const INVALID_REGISTRATION_NUMBER = '';
+    const AGREEMENT_RULES_VALIDATION_FAILED = '';
+    const UNHANDLED_EXCEPTION = '';
+    const HOUSE_NUMBER_IS_OUT_OF_RANGE = '';
+    const CREDITVALIDATION_HOUSE_NUMBER_IS_REQUIRED = '';
+    const INVALID_HOUSE_NUMBER = '';
 
     static public $SE = [
         'DENIED_TO_PURCHASE' => 'Tyvärr blev du inte godkänd att handla på faktura, var god välj ett annat betalningsalternativ.',
