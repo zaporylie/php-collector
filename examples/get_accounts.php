@@ -7,7 +7,7 @@ $credentials = $yaml->parse(file_get_contents(__DIR__.'/config.yml'));
 
 try {
     $client = new Collector\Client($credentials['username'], $credentials['password']);
-    $information = new \Collector\Information($client, \Collector\Country::NORWAY);
+    $information = new \Collector\Information($client, \Collector\Data\Country::NORWAY);
     $response = $information->getAccounts('RegNo', '06073910828');
     var_dump($response);
 } catch (Exception $e) {

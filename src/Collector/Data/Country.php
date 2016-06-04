@@ -1,6 +1,6 @@
 <?php
 
-namespace Collector;
+namespace Collector\Data;
 
 class Country
 {

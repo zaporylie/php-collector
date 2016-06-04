@@ -17,10 +17,10 @@ try {
         'Startveien 56',
         '9300',
         'FINNSENES',
-        \Collector\Country::NORWAY
+        \Collector\Data\Country::NORWAY
     );
 
-    $invoice = new Collector\Invoice($client, \Collector\Country::NORWAY);
+    $invoice = new Collector\Invoice($client, \Collector\Data\Country::NORWAY);
     $invoice->addInvoice(new \Collector\Data\Invoice(
         '06073910828',
         'NOK',
@@ -31,7 +31,7 @@ try {
         Collector\Invoice::EMAIL
     ))->activateInvoice();
 
-    $information = new \Collector\Information($client, \Collector\Country::NORWAY);
+    $information = new \Collector\Information($client, \Collector\Data\Country::NORWAY);
     $response = $information->getAccountTransactions('InvoiceNo', $invoice->getInvoiceNo());
     var_dump($response);
 } catch (Exception $e) {

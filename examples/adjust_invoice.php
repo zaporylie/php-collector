@@ -17,10 +17,10 @@ try {
         'Startveien 56',
         '9300',
         'FINNSENES',
-        \Collector\Country::NORWAY
+        \Collector\Data\Country::NORWAY
     );
 
-    $invoice = new Collector\Invoice($client, \Collector\Country::NORWAY);
+    $invoice = new Collector\Invoice($client, \Collector\Data\Country::NORWAY);
     $response = $invoice->addInvoice(new \Collector\Data\Invoice(
         '06073910828',
         'NOK',
