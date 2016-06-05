@@ -7,7 +7,6 @@ namespace Collector\Data;
  */
 class ArticleList implements \JsonSerializable
 {
-    use SerializerTrait;
 
     /**
      * @var string
@@ -38,6 +37,15 @@ class ArticleList implements \JsonSerializable
         $this->ArticleId = $articleId;
         $this->Description = $description;
         $this->Quantity = $quantity;
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        // Skip empty lines.
+        return array_filter(get_object_vars($this));
     }
 
     public function getArticleId()

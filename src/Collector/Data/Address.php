@@ -76,6 +76,15 @@ class Address extends BaseAddress
         $this->Email = $email;
     }
 
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        // Skip empty lines.
+        return array_filter(get_object_vars($this));
+    }
+
     public function getFirstname()
     {
         return $this->Firstname;

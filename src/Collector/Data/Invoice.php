@@ -7,7 +7,6 @@ namespace Collector\Data;
  */
 class Invoice implements \JsonSerializable
 {
-    use SerializerTrait;
 
     /**
      * @var string (optional)
@@ -139,6 +138,15 @@ class Invoice implements \JsonSerializable
         $this->InvoiceAddress = $invoiceAddress;
         $this->DeliveryAddress = $deliveryAddress;
         $this->InvoiceDeliveryMethod = $invoiceDeliveryMethod;
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        // Skip empty lines.
+        return array_filter(get_object_vars($this));
     }
 
     /**

@@ -7,7 +7,6 @@ namespace Collector\Data;
  */
 class InvoiceRow extends ArticleList
 {
-    use SerializerTrait;
 
     /**
      * @var float
@@ -33,6 +32,15 @@ class InvoiceRow extends ArticleList
         parent::__construct($articleId, $description, $quantity);
         $this->UnitPrice = $unitPrice;
         $this->VAT = $vat;
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+    // Skip empty lines.
+        return array_filter(get_object_vars($this));
     }
 
     public function getUnitPrice()

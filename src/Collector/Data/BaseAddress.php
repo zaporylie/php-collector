@@ -7,7 +7,6 @@ namespace Collector\Data;
  */
 class BaseAddress implements \JsonSerializable
 {
-    use SerializerTrait;
 
     /**
      * @var string
@@ -62,6 +61,15 @@ class BaseAddress implements \JsonSerializable
         $this->PostalCode = $postalCode;
         $this->City = $city;
         $this->CountryCode = $countryCode;
+    }
+
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        // Skip empty lines.
+        return array_filter(get_object_vars($this));
     }
 
     public function getAddress1()
