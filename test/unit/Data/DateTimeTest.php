@@ -14,7 +14,8 @@ class DateTimeTest extends \PHPUnit_Framework_TestCase
         $this->dateTime->setTimestamp(946684800);
     }
 
-    public function testSerialization() {
+    public function testSerialization()
+    {
         $serialized = json_encode($this->dateTime);
         $this->assertEquals(json_encode("2000-01-01T00:00:00+00:00"), $serialized);
     }
