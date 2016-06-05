@@ -7,7 +7,6 @@ namespace Collector\Data;
  */
 class Invoice implements \JsonSerializable
 {
-    use InvoiceDeliveryMethodTrait;
     use SerializerTrait;
 
     /**
@@ -49,6 +48,11 @@ class Invoice implements \JsonSerializable
      * @var \Collector\Data\Address
      */
     protected $DeliveryAddress;
+
+    /**
+     * @var int
+     */
+    protected $InvoiceDeliveryMethod;
 
     /**
      * @var int (optional)
@@ -303,5 +307,21 @@ class Invoice implements \JsonSerializable
     public function getRegNo()
     {
         return $this->RegNo;
+    }
+
+    /**
+     * @param int $InvoiceDeliveryMethod
+     */
+    public function setInvoiceDeliveryMethod($InvoiceDeliveryMethod)
+    {
+        $this->InvoiceDeliveryMethod = $InvoiceDeliveryMethod;
+    }
+
+    /**
+     * @return int
+     */
+    public function getInvoiceDeliveryMethod()
+    {
+        return $this->InvoiceDeliveryMethod;
     }
 }

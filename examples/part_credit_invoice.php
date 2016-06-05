@@ -27,7 +27,7 @@ try {
         $rows,
         $address,
         $address,
-        \Collector\Data\InvoiceDeliveryMethodTrait::$InvoiceDeliveryMethodEmail
+        \Collector\Invoice::EMAIL
     ))->activateInvoice();
 
     $rows = [
