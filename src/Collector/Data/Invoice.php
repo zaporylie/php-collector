@@ -7,7 +7,6 @@ namespace Collector\Data;
  */
 class Invoice implements \JsonSerializable
 {
-    use RegNoTrait;
     use InvoiceDeliveryMethodTrait;
     use SerializerTrait;
 
@@ -104,6 +103,11 @@ class Invoice implements \JsonSerializable
      * @var string (optional)
      */
     protected $CustomerNo;
+
+    /**
+     * @var string (optional)
+     */
+    protected $RegNo;
 
     /**
      * AddInvoice constructor.
@@ -283,5 +287,21 @@ class Invoice implements \JsonSerializable
     public function getCustomerNo()
     {
         return $this->CustomerNo;
+    }
+
+    /**
+     * @param string $RegNo
+     */
+    public function setRegNo($RegNo)
+    {
+        $this->RegNo = $RegNo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRegNo()
+    {
+        return $this->RegNo;
     }
 }
