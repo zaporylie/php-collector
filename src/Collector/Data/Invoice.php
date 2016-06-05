@@ -9,7 +9,6 @@ class Invoice implements \JsonSerializable
 {
     use RegNoTrait;
     use InvoiceDeliveryMethodTrait;
-    use CustomerTrait;
     use SerializerTrait;
 
     /**
@@ -100,6 +99,11 @@ class Invoice implements \JsonSerializable
      * Contact Collector for further information how to use it.
      */
     protected $AdditionalInformation;
+
+    /**
+     * @var string (optional)
+     */
+    protected $CustomerNo;
 
     /**
      * AddInvoice constructor.
@@ -263,5 +267,21 @@ class Invoice implements \JsonSerializable
     public function setAdditionalInformation($AdditionalInformation)
     {
         $this->AdditionalInformation = $AdditionalInformation;
+    }
+
+    /**
+     * @param string $CustomerNo
+     */
+    public function setCustomerNo($CustomerNo)
+    {
+        $this->CustomerNo = $CustomerNo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCustomerNo()
+    {
+        return $this->CustomerNo;
     }
 }
