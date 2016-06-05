@@ -39,4 +39,19 @@ class ArticleList implements \JsonSerializable
         $this->Description = $description;
         $this->Quantity = $quantity;
     }
+
+    public function getArticleId()
+    {
+        return $this->ArticleId;
+    }
+
+    public function getDescription()
+    {
+        return $this->Description;
+    }
+
+    public function getQuantity()
+    {
+        return $this->Quantity;
+    }
 }
