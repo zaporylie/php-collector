@@ -7,7 +7,6 @@ namespace Collector\Data;
  */
 trait HeaderTrait
 {
-    use CorrelationIdTrait;
 
     /**
      * @var int (optional)
@@ -18,6 +17,11 @@ trait HeaderTrait
      * @var string
      */
     protected $CountryCode;
+
+    /**
+     * @var string
+     */
+    protected $correlationId;
 
     /**
      * @return int
@@ -49,5 +53,21 @@ trait HeaderTrait
     public function setCountryCode($CountryCode)
     {
         $this->CountryCode = $CountryCode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCorrelationId()
+    {
+        return $this->correlationId;
+    }
+
+    /**
+     * @param string $correlationId
+     */
+    public function setCorrelationId($correlationId)
+    {
+        $this->correlationId = $correlationId;
     }
 }
