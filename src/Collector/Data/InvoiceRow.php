@@ -34,4 +34,14 @@ class InvoiceRow extends ArticleList
         $this->UnitPrice = $unitPrice;
         $this->VAT = $vat;
     }
+
+    public function getUnitPrice()
+    {
+        return $this->UnitPrice;
+    }
+
+    public function getVAT()
+    {
+        return $this->VAT;
+    }
 }
