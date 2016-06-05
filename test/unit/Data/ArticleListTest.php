@@ -2,7 +2,7 @@
 
 namespace Collector\Data;
 
-class ArticleListTests extends \PHPUnit_Framework_TestCase
+class ArticleListTest extends \PHPUnit_Framework_TestCase
 {
 
     /**

@@ -2,7 +2,7 @@
 
 namespace Collector\Data;
 
-class InvoiceRowTests extends \PHPUnit_Framework_TestCase
+class InvoiceRowTest extends \PHPUnit_Framework_TestCase
 {
 
     /**

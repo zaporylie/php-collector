@@ -2,7 +2,7 @@
 
 namespace Collector\Data;
 
-class AddressTests extends \PHPUnit_Framework_TestCase
+class AddressTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var Address;

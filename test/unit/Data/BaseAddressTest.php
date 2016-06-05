@@ -2,7 +2,7 @@
 
 namespace Collector\Data;
 
-class BaseAddressTests extends \PHPUnit_Framework_TestCase
+class BaseAddressTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
