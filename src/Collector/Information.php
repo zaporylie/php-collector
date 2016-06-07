@@ -61,11 +61,9 @@ class Information
      */
     protected function call($method, array $data = [])
     {
-        $this->client->setMethod($method);
         $this->client->setWsdl(self::WSDL);
         $this->client->setSchema(self::SCHEMA);
-        $this->client->setData($data);
-        $response = $this->client->call();
+        $response = $this->client->call($method, $data);
         return $response;
     }
 

@@ -54,64 +54,6 @@ class Client implements ClientInterface
     protected $schema;
 
     /**
-     * @var
-     */
-    protected $method;
-
-    /**
-     * @var
-     */
-    protected $data;
-
-    /**
-     * @return array
-     */
-    public function getData()
-    {
-        return $this->data;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMethod()
-    {
-        return $this->method;
-    }
-
-    /**
-     * @return string
-     */
-    public function getSchema()
-    {
-        return $this->schema;
-    }
-
-    /**
-     * @return string
-     */
-    public function getWsdl()
-    {
-        return $this->wsdl;
-    }
-
-    /**
-     * @param string $method
-     */
-    public function setMethod($method)
-    {
-        $this->method = $method;
-    }
-
-    /**
-     * @param array $data
-     */
-    public function setData(array $data)
-    {
-        $this->data = $data;
-    }
-
-    /**
      * @param string $schema
      */
     public function setSchema($schema)
@@ -147,14 +89,14 @@ class Client implements ClientInterface
      *
      * @throws \Collector\ClientException
      */
-    public function call()
+    public function call($method, $data)
     {
-        $path = $this->environment.$this->getWsdl().self::WSDL_SUFFIX;
+        $path = $this->environment.$this->wsdl.self::WSDL_SUFFIX;
         $client = new \SoapClient($path, $this->options);
 
         $headers = array();
 
-        $namespace = self::SCHEMA_PREFIX.$this->getSchema();
+        $namespace = self::SCHEMA_PREFIX.$this->schema;
 
         $headers[] = new \SoapHeader($namespace, 'ClientIpAddress', $this->ip);
         $headers[] = new \SoapHeader($namespace, 'Username', $this->username);
@@ -162,7 +104,7 @@ class Client implements ClientInterface
         $client->__setSoapHeaders($headers);
 
         try {
-            $results = $client->{$this->getMethod()}($this->getData());
+            $results = $client->{$method}($data);
         } catch (\Exception $e) {
             throw new ClientException($e->getMessage(), $e->getCode(), $e);
         }
