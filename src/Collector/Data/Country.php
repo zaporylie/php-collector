@@ -2,7 +2,11 @@
 
 namespace Collector\Data;
 
-class Country
+/**
+ * Class Country
+ * @package Collector\Data
+ */
+abstract class Country
 {
     const NORWAY = 'NO';
 
