@@ -13,7 +13,7 @@ interface InvoiceInterface
 
     public function activateInvoice();
 
-    public function adjustInvoice();
+    public function adjustInvoice($articleId, $description, $amount, $vat);
 
     public function cancelInvoice();
 
