@@ -9,7 +9,7 @@ use Collector\Data\InvoiceNoTrait;
  * Class Invoice
  * @package Collector
  */
-class Invoice
+class Invoice implements InvoiceInterface, ServiceInterface
 {
 
     use HeaderTrait;
@@ -65,14 +65,27 @@ class Invoice
     protected $client;
 
     /**
-     * @var
+     * @var mixed
      */
     protected $lastResponse;
 
+    /**
+     * Invoice constructor.
+     * @param \Collector\ClientInterface $client
+     * @param string $countryCode
+     */
     public function __construct(ClientInterface $client, $countryCode)
     {
         $this->client = $client;
         $this->setCountryCode($countryCode);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastResponse()
+    {
+        return $this->lastResponse;
     }
 
     public function addInvoice(\Collector\Data\Invoice $invoice)
@@ -167,22 +180,6 @@ class Invoice
     }
 
     /**
-     * @param mixed $lastResponse
-     */
-    public function setLastResponse($lastResponse)
-    {
-        $this->lastResponse = $lastResponse;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLastResponse()
-    {
-        return $this->lastResponse;
-    }
-
-    /**
      * @param string $method
      * @param array $data
      * @return mixed
@@ -194,6 +191,14 @@ class Invoice
         $response = $this->client->call($method, $data);
         $this->setLastResponse($response);
         return $response;
+    }
+
+    /**
+     * @param mixed $lastResponse
+     */
+    protected function setLastResponse($lastResponse)
+    {
+        $this->lastResponse = $lastResponse;
     }
 
     /**

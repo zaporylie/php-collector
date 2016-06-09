@@ -21,10 +21,10 @@ trait InvoiceNoTrait
     }
 
     /**
-     * @param string $InvoiceNo
+     * @param string $invoiceNo
      */
-    public function setInvoiceNo($InvoiceNo)
+    public function setInvoiceNo($invoiceNo)
     {
-        $this->InvoiceNo = $InvoiceNo;
+        $this->InvoiceNo = $invoiceNo;
     }
 }

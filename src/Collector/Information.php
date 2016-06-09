@@ -4,7 +4,7 @@ namespace Collector;
 
 use Collector\Data\HeaderTrait;
 
-class Information
+class Information implements InformationInterface, ServiceInterface
 {
 
     use HeaderTrait;
@@ -17,10 +17,28 @@ class Information
      */
     protected $client;
 
+    /**
+     * @var mixed
+     */
+    protected $lastResponse;
+
+    /**
+     * Information constructor.
+     * @param \Collector\ClientInterface $client
+     * @param string $countryCode
+     */
     public function __construct(ClientInterface $client, $countryCode)
     {
         $this->client = $client;
         $this->setCountryCode($countryCode);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastResponse()
+    {
+        return $this->lastResponse;
     }
 
     public function getAccounts($key, $value)
@@ -64,7 +82,16 @@ class Information
         $this->client->setWsdl(self::WSDL);
         $this->client->setSchema(self::SCHEMA);
         $response = $this->client->call($method, $data);
+        $this->setLastResponse($response);
         return $response;
+    }
+
+    /**
+     * @param mixed $lastResponse
+     */
+    protected function setLastResponse($lastResponse)
+    {
+        $this->lastResponse = $lastResponse;
     }
 
     /**
