@@ -4,6 +4,7 @@ namespace Collector;
 
 /**
  * Class Client.
+ * @codeCoverageIgnore
  */
 class Client implements ClientInterface
 {
