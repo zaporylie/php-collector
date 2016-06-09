@@ -158,11 +158,27 @@ class Invoice implements \JsonSerializable
     }
 
     /**
+     * @return string
+     */
+    public function getClientIpAddress()
+    {
+        return $this->ClientIpAddress;
+    }
+
+    /**
      * @param string $Currency
      */
     public function setCurrency($Currency)
     {
         $this->Currency = $Currency;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCurrency()
+    {
+        return $this->Currency;
     }
 
     /**
@@ -174,11 +190,27 @@ class Invoice implements \JsonSerializable
     }
 
     /**
+     * @return string
+     */
+    public function getOrderNo()
+    {
+        return $this->OrderNo;
+    }
+
+    /**
      * @param \Collector\Data\DateTime $OrderDate
      */
     public function setOrderDate(\Collector\Data\DateTime $OrderDate)
     {
         $this->OrderDate = $OrderDate;
+    }
+
+    /**
+     * @return \Collector\Data\DateTime
+     */
+    public function getOrderDate()
+    {
+        return $this->OrderDate;
     }
 
     /**
@@ -190,11 +222,27 @@ class Invoice implements \JsonSerializable
     }
 
     /**
+     * @return \Collector\Data\InvoiceRow[]
+     */
+    public function getInvoiceRows()
+    {
+        return $this->InvoiceRows;
+    }
+
+    /**
      * @param int $InvoiceType
      */
     public function setInvoiceType($InvoiceType)
     {
         $this->InvoiceType = $InvoiceType;
+    }
+
+    /**
+     * @return int
+     */
+    public function getInvoiceType()
+    {
+        return $this->InvoiceType;
     }
 
     /**
@@ -206,11 +254,27 @@ class Invoice implements \JsonSerializable
     }
 
     /**
+     * @return \Collector\Data\Address
+     */
+    public function getInvoiceAddress()
+    {
+        return $this->InvoiceAddress;
+    }
+
+    /**
      * @param \Collector\Data\Address $DeliveryAddress
      */
     public function setDeliveryAddress(\Collector\Data\Address $DeliveryAddress)
     {
         $this->DeliveryAddress = $DeliveryAddress;
+    }
+
+    /**
+     * @return \Collector\Data\Address
+     */
+    public function getDeliveryAddress()
+    {
+        return $this->DeliveryAddress;
     }
 
     /**
@@ -222,11 +286,27 @@ class Invoice implements \JsonSerializable
     }
 
     /**
+     * @return int
+     */
+    public function getCreditTime()
+    {
+        return $this->CreditTime;
+    }
+
+    /**
      * @param int $ActivationOption
      */
     public function setActivationOption($ActivationOption)
     {
         $this->ActivationOption = $ActivationOption;
+    }
+
+    /**
+     * @return int
+     */
+    public function getActivationOption()
+    {
+        return $this->ActivationOption;
     }
 
     /**
@@ -238,11 +318,27 @@ class Invoice implements \JsonSerializable
     }
 
     /**
+     * @return string
+     */
+    public function getReference()
+    {
+        return $this->Reference;
+    }
+
+    /**
      * @param string $CostCenter
      */
     public function setCostCenter($CostCenter)
     {
         $this->CostCenter = $CostCenter;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCostCenter()
+    {
+        return $this->CostCenter;
     }
 
     /**
@@ -254,11 +350,27 @@ class Invoice implements \JsonSerializable
     }
 
     /**
+     * @return int
+     */
+    public function getGender()
+    {
+        return $this->Gender;
+    }
+
+    /**
      * @param string $ProductCode
      */
     public function setProductCode($ProductCode)
     {
         $this->ProductCode = $ProductCode;
+    }
+
+    /**
+     * @return string
+     */
+    public function getProductCode()
+    {
+        return $this->ProductCode;
     }
 
     /**
@@ -270,6 +382,14 @@ class Invoice implements \JsonSerializable
     }
 
     /**
+     * @return int
+     */
+    public function getPurchaseType()
+    {
+        return $this->PurchaseType;
+    }
+
+    /**
      * @param string $SalesPerson
      */
     public function setSalesPerson($SalesPerson)
@@ -278,11 +398,27 @@ class Invoice implements \JsonSerializable
     }
 
     /**
+     * @return string
+     */
+    public function getSalesPerson()
+    {
+        return $this->SalesPerson;
+    }
+
+    /**
      * @param mixed $AdditionalInformation
      */
     public function setAdditionalInformation($AdditionalInformation)
     {
         $this->AdditionalInformation = $AdditionalInformation;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAdditionalInformation()
+    {
+        return $this->AdditionalInformation;
     }
 
     /**
