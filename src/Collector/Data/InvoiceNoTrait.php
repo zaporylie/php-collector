@@ -26,5 +26,6 @@ trait InvoiceNoTrait
     public function setInvoiceNo($invoiceNo)
     {
         $this->InvoiceNo = $invoiceNo;
+        return $this;
     }
 }
