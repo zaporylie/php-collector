@@ -43,6 +43,7 @@ class Information implements InformationInterface, ServiceInterface
 
     public function getAccounts($key, $value)
     {
+        $this->validateGetAccounts($key);
         $data = [
             $key => $value,
         ];
@@ -54,6 +55,7 @@ class Information implements InformationInterface, ServiceInterface
 
     public function getAccountTransactions($key, $value)
     {
+        $this->validateInvoiceNoOrPaymentReference($key);
         $data = [
             $key => $value,
         ];
@@ -65,6 +67,7 @@ class Information implements InformationInterface, ServiceInterface
 
     public function getCurrentInvoice($key, $value)
     {
+        $this->validateInvoiceNoOrPaymentReference($key);
         $data = [
             $key => $value,
         ];
@@ -114,5 +117,27 @@ class Information implements InformationInterface, ServiceInterface
     {
         $data = json_decode(json_encode($data), true) + $this->getHeader();
         return array_filter($data);
+    }
+
+    /**
+     * @param $key
+     * @throws \Collector\MissingKeyException
+     */
+    protected function validateGetAccounts($key)
+    {
+        if (!in_array($key, array('CustomerNo', 'IntegrationID', 'RegNo'))) {
+            throw new MissingKeyException($key, "Key $key is not valid, expected CustomerNo, IntegrationID or RegNo");
+        }
+    }
+
+    /**
+     * @param $key
+     * @throws \Collector\MissingKeyException
+     */
+    protected function validateInvoiceNoOrPaymentReference($key)
+    {
+        if (!in_array($key, array('InvoiceNo', 'PaymentReference'))) {
+            throw new MissingKeyException($key, "Key $key is not valid, expected InvoiceNo or PaymentReference");
+        }
     }
 }
