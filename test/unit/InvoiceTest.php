@@ -31,11 +31,15 @@ class InvoiceTest extends Data\InvoiceTest
      */
     protected $response;
 
+    /**
+     * Set up test case.
+     */
     public function setUp()
     {
         parent::setUp();
         $this->response = new \stdClass();
         $this->response->InvoiceNo = 1234;
+        $this->response->NewInvoiceNo = 4321;
         $this->invoiceId = 4321;
         $this->countryCode = Country::NORWAY;
         $this->client = $this->getMockBuilder('\Collector\Client')
@@ -70,7 +74,6 @@ class InvoiceTest extends Data\InvoiceTest
     public function testActivateInvoice()
     {
         $this->invoiceService->setInvoiceNo($this->invoiceId)->activateInvoice();
-        $this->assertNotEmpty($this->invoiceService->getLastResponse()->data['InvoiceNo']);
         $this->assertEquals('ActivateInvoice', $this->invoiceService->getLastResponse()->method);
         $this->assertSame($this->response, $this->invoiceService->getLastResponse());
     }
@@ -78,7 +81,6 @@ class InvoiceTest extends Data\InvoiceTest
     public function testAdjustInvoice()
     {
         $this->invoiceService->setInvoiceNo($this->invoiceId)->adjustInvoice('ArticleId', 'Description', 'Amount', 'Vat');
-        $this->assertNotEmpty($this->invoiceService->getLastResponse()->data['InvoiceNo']);
         $this->assertEquals('AdjustInvoice', $this->invoiceService->getLastResponse()->method);
         $this->assertSame($this->response, $this->invoiceService->getLastResponse());
     }
@@ -86,7 +88,6 @@ class InvoiceTest extends Data\InvoiceTest
     public function testCancelInvoice()
     {
         $this->invoiceService->setInvoiceNo($this->invoiceId)->cancelInvoice();
-        $this->assertNotEmpty($this->invoiceService->getLastResponse()->data['InvoiceNo']);
         $this->assertEquals('CancelInvoice', $this->invoiceService->getLastResponse()->method);
         $this->assertSame($this->response, $this->invoiceService->getLastResponse());
     }
@@ -94,7 +95,6 @@ class InvoiceTest extends Data\InvoiceTest
     public function testCreditInvoice()
     {
         $this->invoiceService->setInvoiceNo($this->invoiceId)->creditInvoice();
-        $this->assertNotEmpty($this->invoiceService->getLastResponse()->data['InvoiceNo']);
         $this->assertEquals('CreditInvoice', $this->invoiceService->getLastResponse()->method);
         $this->assertSame($this->response, $this->invoiceService->getLastResponse());
     }
@@ -102,8 +102,35 @@ class InvoiceTest extends Data\InvoiceTest
     public function testExtendDueDate()
     {
         $this->invoiceService->setInvoiceNo($this->invoiceId)->extendDueDate();
-        $this->assertNotEmpty($this->invoiceService->getLastResponse()->data['InvoiceNo']);
         $this->assertEquals('ExtendDueDate', $this->invoiceService->getLastResponse()->method);
+        $this->assertSame($this->response, $this->invoiceService->getLastResponse());
+    }
+
+    public function testPartActivateInvoice()
+    {
+        $this->invoiceService->setInvoiceNo($this->invoiceId)->partActivateInvoice(array());
+        $this->assertEquals('PartActivateInvoice', $this->invoiceService->getLastResponse()->method);
+        $this->assertSame($this->response, $this->invoiceService->getLastResponse());
+    }
+
+    public function testPartCreditInvoice()
+    {
+        $this->invoiceService->setInvoiceNo($this->invoiceId)->partCreditInvoice(array());
+        $this->assertEquals('PartCreditInvoice', $this->invoiceService->getLastResponse()->method);
+        $this->assertSame($this->response, $this->invoiceService->getLastResponse());
+    }
+
+    public function testReplaceInvoice()
+    {
+        $this->invoiceService->setInvoiceNo($this->invoiceId)->replaceInvoice($this->invoiceRows);
+        $this->assertEquals('ReplaceInvoice', $this->invoiceService->getLastResponse()->method);
+        $this->assertSame($this->response, $this->invoiceService->getLastResponse());
+    }
+
+    public function testSendInvoice()
+    {
+        $this->invoiceService->setInvoiceNo($this->invoiceId)->sendInvoice(Invoice::EMAIL);
+        $this->assertEquals('SendInvoice', $this->invoiceService->getLastResponse()->method);
         $this->assertSame($this->response, $this->invoiceService->getLastResponse());
     }
 }
