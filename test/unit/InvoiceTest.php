@@ -51,6 +51,15 @@ class InvoiceTest extends Data\InvoiceTest
         $this->invoiceService = new Invoice($this->client, $this->countryCode);
     }
 
+    /**
+     * @expectedException \Collector\MissingKeyException
+     * @expectedExceptionMessage Missing key: InvoiceNo
+     */
+    public function testValidateMissingInvoiceReference()
+    {
+        $this->invoiceService->cancelInvoice();
+    }
+
     public function testAddInvoice()
     {
         $this->invoiceService->addInvoice($this->invoice);

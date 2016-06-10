@@ -98,6 +98,7 @@ class Invoice implements InvoiceInterface, ServiceInterface
 
     public function activateInvoice()
     {
+        $this->validateMissingInvoiceReference();
         $data = $this->getData();
         $this->call('ActivateInvoice', $data);
         return $this;
@@ -105,6 +106,7 @@ class Invoice implements InvoiceInterface, ServiceInterface
 
     public function adjustInvoice($articleId, $description, $amount, $vat)
     {
+        $this->validateMissingInvoiceReference();
         $data = $this->getData([
             'ArticleId' => $articleId,
             'Description' => $description,
@@ -117,6 +119,7 @@ class Invoice implements InvoiceInterface, ServiceInterface
 
     public function cancelInvoice()
     {
+        $this->validateMissingInvoiceReference();
         $data = $this->getData();
         $this->call('CancelInvoice', $data);
         $this->setInvoiceNo(null);
@@ -125,6 +128,7 @@ class Invoice implements InvoiceInterface, ServiceInterface
 
     public function creditInvoice(\Collector\Data\DateTime $creditDate = null)
     {
+        $this->validateMissingInvoiceReference();
         $data = $this->getData([
             'CreditDate' => $creditDate ?: new \Collector\Data\DateTime(),
         ]);
@@ -135,6 +139,7 @@ class Invoice implements InvoiceInterface, ServiceInterface
 
     public function extendDueDate()
     {
+        $this->validateMissingInvoiceReference();
         $data = $this->getData();
         $this->call('ExtendDueDate', $data);
         return $this;
@@ -142,6 +147,7 @@ class Invoice implements InvoiceInterface, ServiceInterface
 
     public function partActivateInvoice(array $articleList)
     {
+        $this->validateMissingInvoiceReference();
         $data = $this->getData([
             'ArticleList' => $articleList,
         ]);
@@ -152,6 +158,7 @@ class Invoice implements InvoiceInterface, ServiceInterface
 
     public function partCreditInvoice(array $articleList, \Collector\Data\DateTime $creditDate = null)
     {
+        $this->validateMissingInvoiceReference();
         $data = $this->getData([
             'ArticleList' => $articleList,
             'CreditDate' => $creditDate ?: new \Collector\Data\DateTime(),
@@ -162,6 +169,7 @@ class Invoice implements InvoiceInterface, ServiceInterface
 
     public function replaceInvoice(array $invoiceRows)
     {
+        $this->validateMissingInvoiceReference();
         $data = $this->getData([
             'InvoiceRows' => $invoiceRows,
         ]);
@@ -171,6 +179,7 @@ class Invoice implements InvoiceInterface, ServiceInterface
 
     public function sendInvoice($invoiceDeliveryMethod, $email = null)
     {
+        $this->validateMissingInvoiceReference();
         $data = $this->getData([
             'InvoiceDeliveryMethod' => $invoiceDeliveryMethod,
             'Email' => $email,
@@ -222,5 +231,15 @@ class Invoice implements InvoiceInterface, ServiceInterface
     {
         $data = json_decode(json_encode($data), true) + $this->getHeader();
         return array_filter($data);
+    }
+
+    /**
+     * @throws \Collector\MissingKeyException
+     */
+    protected function validateMissingInvoiceReference()
+    {
+        if (!isset($this->InvoiceNo)) {
+            throw new MissingKeyException('InvoiceNo');
+        }
     }
 }
