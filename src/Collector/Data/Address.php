@@ -114,4 +114,14 @@ class Address extends BaseAddress
     {
         return $this->Email;
     }
+
+    /**
+     * Set the phone number.
+     *
+     * @param string $PhoneNumber
+     */
+    public function setPhoneNumber($PhoneNumber)
+    {
+        $this->PhoneNumber = $PhoneNumber;
+    }
 }

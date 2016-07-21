@@ -56,4 +56,11 @@ class AddressTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals('Email', $this->address->getEmail());
     }
+
+    public function testSetPhoneNumber()
+    {
+        $newTestNumber = '1234567';
+        $this->address->setPhoneNumber($newTestNumber);
+        $this->assertEquals($newTestNumber, $this->address->getPhoneNumber());
+    }
 }
